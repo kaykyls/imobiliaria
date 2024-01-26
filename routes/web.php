@@ -36,6 +36,17 @@ Route::get('/manage/admins/register', function () {
     return Inertia::render('RegisterAdmin'); 
 })->name('registerAdmin');
 
+Route::get('/manage/properties', function () {     
+    return Inertia::render('AdminProperties'); 
+})->name('AdminProperties');
+
+Route::get('/manage/admin', function () {     
+    return Inertia::render('Admin'); 
+})->name('Admin');
+
+Route::get('/manage/admins', function () {     
+    return Inertia::render('Admins'); 
+})->name('admins');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
