@@ -7,6 +7,8 @@ use Inertia\Inertia;
 use App\Models\Property;
 use App\Models\Address;
 use Illuminate\Support\Facades\Redirect;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class PropertyController extends Controller
 {
@@ -22,10 +24,6 @@ class PropertyController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
-
-        // dump($request->all());
-
         $request->validate([
             'title' => 'required|string',
             'cep' => 'required|string',
@@ -41,9 +39,29 @@ class PropertyController extends Controller
             'status' => 'required|string',
             'bedrooms' => 'required|numeric',
             'bathrooms' => 'required|numeric',
+            'images.*' => 'required|file|mimes:jpeg,png,jpg'
         ]);
 
-        // $images = $request->file('images');
+        $manager = ImageManager::gd();
+
+        $files = $request->file('images');
+
+        $imagesPaths = [];
+
+        foreach($files as $file) {
+            $originalFilename = $file->getClientOriginalName();
+            $filename = time() . '-' . $originalFilename;
+
+            $image = $manager->read($file);
+            $image->scaleDown(height: 300);
+
+            $image->save(base_path('storage/app/uploads/' . $filename));
+            $path = 'uploads/' . $filename;
+
+            $imagesPaths[] = $path;
+        }
+
+        $images = implode(',', $imagesPaths);
 
         $address = Address::create([
             'cep' => $request->cep,
@@ -57,8 +75,6 @@ class PropertyController extends Controller
         $status = $request->status == 'Ativo' ? true : false;
         $category = $request->category == 'Casa' ? true : false;
 
-        // dd($isForRent, $status, $category);
-
         Property::create([
             'title' => $request->title,
             'address_id' => $address->id,
@@ -70,6 +86,7 @@ class PropertyController extends Controller
             'status' => $status,
             'bedrooms' => $request->bedrooms,
             'bathrooms' => $request->bathrooms,
+            'images' => $images
         ]);
 
         return Redirect::route('property.index');

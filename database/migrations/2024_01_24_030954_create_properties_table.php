@@ -23,7 +23,7 @@ return new class extends Migration
             $table->boolean('category');
             $table->integer('code');
             $table->unsignedBigInteger('address_id');
-            // $table->string('images')->nullable();
+            $table->string('images');
             $table->timestamps();
         });
     }

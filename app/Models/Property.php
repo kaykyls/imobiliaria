@@ -20,6 +20,7 @@ class Property extends Model
         'status',
         'bedrooms',
         'bathrooms',
+        'images'
     ];
 
     public function address()

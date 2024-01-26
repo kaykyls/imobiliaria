@@ -13,7 +13,7 @@ const RegisterProperty = () => {
     price: null,
     code: null,
     description: '',
-    // images: [],
+    images: [],
     category: 'Casa',
     isForRent: 'Venda',
     status: 'Ativo',
@@ -27,6 +27,15 @@ const RegisterProperty = () => {
       ...prevData,
       [name]: value,
     }));
+  };
+
+  const handleFileChange = (event) => {
+    const newImages = [...data.images, ...event.target.files];
+
+    setData({
+      ...data,
+      images: newImages,
+    });
   };
 
   const handleSubmit = (e) => {
@@ -165,19 +174,33 @@ const RegisterProperty = () => {
             placeholder="Digite a descrição"
           ></textarea>
         </div>
-        {/* <div className="flex">
+        <div className="flex">
           <span className="w-40">Imagens</span>
-          <label className="w-32 h-32 mb-4 bg-gray-300" htmlFor="image"></label>
-          <input
-            className="hidden"
-            type="file"
-            accept="image/*"
-            name="images"
-            multiple
-            id="image"
-            onChange={handleInputChange}
-          />
-        </div> */}
+          <div className="flex gap-4">
+            <label className="w-32 h-32 mb-4 bg-gray-300" htmlFor="image"></label>
+            <input
+              className="hidden"
+              type="file"
+              accept="image/*"
+              name="images"
+              multiple
+              id="image"
+              onChange={handleFileChange}
+            />
+            {data.images.length > 0 && (
+              <div className="flex gap-4">
+                {Array.from(data.images).map((image, index) => (
+                  <img
+                    key={index}
+                    src={URL.createObjectURL(image)}
+                    alt={image.name}
+                    className="w-32 h-32 object-cover"
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
         <div className="flex">
           <label className="w-40">Tipo</label>
           <select
