@@ -22,7 +22,7 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/property', [PropertyController::class, 'index'])->name('property.index');
+// Route::get('/property', [PropertyController::class, 'index'])->name('property.index');
 
 Route::get('/manage', function () {     
     return Inertia::render('Dashboard'); 
@@ -32,13 +32,15 @@ Route::get('/manage/properties/register', [PropertyController::class, 'register'
 
 Route::post('/properties', [PropertyController::class, 'store'])->name('property.store');
 
+Route::get('/manage/properties', [PropertyController::class, 'index'])->name('property.index');
+
+Route::delete('/manage/properties/{property}', [PropertyController::class, 'destroy'])->name('property.destroy');
+
+
 Route::get('/manage/admins/register', function () {     
     return Inertia::render('RegisterAdmin'); 
 })->name('registerAdmin');
 
-Route::get('/manage/properties', function () {     
-    return Inertia::render('AdminProperties'); 
-})->name('AdminProperties');
 
 Route::get('/manage/admin', function () {     
     return Inertia::render('Admin'); 

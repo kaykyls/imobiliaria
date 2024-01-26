@@ -1,5 +1,6 @@
-
 import PanelLayout from "@/Layouts/PanelLayout"
+import { Link } from "@inertiajs/react"
+
 export default function Properties(){
     return(
         <PanelLayout>
@@ -7,9 +8,8 @@ export default function Properties(){
           <form>
             <div className='justify-between flex '>
               <h2 className='text-2xl'>Admins</h2>
-              <input className='py-2 px-10 bg-main-color' type="submit" value="Adicionar" />
+              <Link className='py-2 px-10 bg-main-color' href="/manage/admins/register">Cadastrar</Link>
             </div>
-            <input className='mt-8 w-full border-gray-300 border' type="text" placeholder='Pesquisar' />
           </form>
 
           <div className='mt-10 '>
@@ -25,7 +25,10 @@ export default function Properties(){
             </div>
 
             <div className='items-center container justify-between flex flex-row w-full p-5   hover:bg-gray-300 '>
-              <img className='w-10 h-10 bg-black' src="" alt="" />
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+            </svg>
+
               <p className='w-[60px]'>nome</p>
                 <p className='w-[100px]'>Email</p>
               <div className='flex gap-4'>
@@ -39,7 +42,9 @@ export default function Properties(){
               </div>
             </div>
             <div className='items-center container justify-between flex flex-row w-full p-5   hover:bg-gray-300 '>
-              <img className='w-10 h-10 bg-black' src="" alt="" />
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+            </svg>
               <p className='w-[60px]'>nome</p>
                 <p className='w-[100px]'>Email</p>
               <div className='flex gap-4'>
@@ -56,7 +61,9 @@ export default function Properties(){
               </div>
             </div>
             <div className='items-center container justify-between flex flex-row w-full p-5   hover:bg-gray-200 '>
-              <img className='w-10 h-10 bg-black' src="" alt="" />
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+            </svg>
               <p className='w-[60px]'>nome</p>
                 <p className='w-[100px]'>Email</p>
               <div className='flex gap-4'>
@@ -70,7 +77,9 @@ export default function Properties(){
               </div>
             </div>
             <div className='items-center container justify-between flex flex-row w-full p-5   hover:bg-gray-300 '>
-              <img className='w-10 h-10 bg-black' src="" alt="" />
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+            </svg>
               <p className='w-[60px]'>nome</p>
                 <p className='w-[100px]'>Email</p>
               <div className='flex gap-4'>
@@ -84,7 +93,9 @@ export default function Properties(){
               </div>
             </div>
             <div className='items-center container justify-between flex flex-row w-full p-5   hover:bg-gray-300 '>
-              <img className='w-10 h-10 bg-black' src="" alt="" />
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+            </svg>
               <p className='w-[60px]'>nome</p>
                 <p className='w-[100px]'>Email</p>
               <div className='flex gap-4'>
@@ -98,7 +109,9 @@ export default function Properties(){
               </div>
             </div>
             <div className='items-center container justify-between flex flex-row w-full p-5  hover:bg-gray-300  '>
-              <img className='w-10 h-10 bg-black' src="" alt="" />
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+            </svg>
               <p className='w-[60px]'>nome</p>
                 <p className='w-[100px]'>Email</p>
               <div className='flex gap-4'>

@@ -14,7 +14,30 @@ class PropertyController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Property'); 
+        return Inertia::render('AdminProperties', [
+            'properties' => Property::all()->map(function($property) {
+                $imagePaths = explode(',', $property->images);
+                $imagePaths = array_map(function ($image) {
+                    return asset('app/storage/uploads/' . $image);
+                }, $imagePaths);
+    
+                return [
+                    'id' => $property->id,
+                    'title' => $property->title,
+                    'price' => $property->price,
+                    'code' => $property->code,
+                    'description' => $property->description,
+                    'category' => $property->category,
+                    'isForRent' => $property->isForRent,
+                    'status' => $property->status,
+                    'bedrooms' => $property->bedrooms,
+                    'bathrooms' => $property->bathrooms,
+                    'images' => $imagePaths,
+                    'address' => $property->address,
+                ];
+            }),
+            'addresses' => Address::all(),
+        ]);
     }
 
     public function register()
@@ -88,6 +111,14 @@ class PropertyController extends Controller
             'bathrooms' => $request->bathrooms,
             'images' => $images
         ]);
+
+        return Redirect::route('property.index');
+    }
+
+    public function destroy($id)
+    {
+        $property = Property::find($id);
+        $property->delete();
 
         return Redirect::route('property.index');
     }
