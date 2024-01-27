@@ -5,6 +5,8 @@ const RegisterAdmin = () => {
     <PanelLayout>
       <div className="flex gap-4 items-center mb-8">
         <svg
+          onClick={() => history.back()}
+          className="cursor-pointer"
           width="24"
           height="25"
           viewBox="0 0 24 25"
@@ -31,22 +33,22 @@ const RegisterAdmin = () => {
       <form>
         <div className="flex">
           <label className="w-40">Nome</label>
-          <input className="w-full border-gray-300 mb-4" type="text" required placeholder="Digite o título" />
+          <input className="w-full border-gray-200 rounded-md mb-4" type="text" required placeholder="Nome" />
         </div>
         <div className="flex">
           <label className="w-40">Email</label>
-          <input className="w-full border-gray-300 mb-4" type="email" required placeholder="Digite o título" />
+          <input className="w-full border-gray-200 rounded-md mb-4" type="email" required placeholder="Email" />
         </div>
         <div className="flex">
           <label className="w-40">Senha</label>
-          <input className="w-full border-gray-300 mb-4" type="password" required placeholder="Digite o título" />
+          <input className="w-full border-gray-200 rounded-md mb-4" type="password" required placeholder="Senha" />
         </div>
         <div className="flex">
           <label className="w-40">Confirmar Senha</label>
-          <input className="w-full border-gray-300 mb-4" type="password" required placeholder="Digite o título" />
+          <input className="w-full border-gray-200 rounded-md mb-4" type="password" required placeholder="Confirmar Senha" />
         </div>
         <div className="flex justify-end">
-            <button className="py-2 bg-main-color px-10" type="submit">Registrar</button>
+            <button className="py-2 px-14 rounded-md bg-main-color" type="submit">Registrar</button>
         </div>
       </form>
     </PanelLayout>

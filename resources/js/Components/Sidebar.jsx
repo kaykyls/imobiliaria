@@ -1,8 +1,18 @@
-import React from 'react'
+import { useState, useEffect } from 'react'
 import SidebarItem from './SidebarItem'
 import { Link } from '@inertiajs/react'
 
 const Sidebar = () => {
+    const [path, setPath] = useState('')
+
+    useEffect(() => {
+        const getPath = () => {
+            setPath(window.location.pathname)
+        }
+
+        getPath()
+    }, [])
+
     return (
         <div className='fixed top-0 left-0 h-screen w-72 bg-white text-gray-800 m-0 flex flex-col gap-12  border-r border-medium-gray'>
             <Link href={"/"} className='flex text-2xl items-center font-medium px-10 py-4 gap-1'>
@@ -17,6 +27,7 @@ const Sidebar = () => {
                             </svg>
                         }
                         href='/manage'
+                        isActive={path === '/manage'}
                     />
                     <SidebarItem
                         title='Imóveis'
@@ -25,6 +36,7 @@ const Sidebar = () => {
                             </svg>
                         }
                         href='/manage/properties'
+                        isActive={path.startsWith('/manage/properties')}
                     />
                     <SidebarItem
                         title='Admins'
@@ -33,6 +45,7 @@ const Sidebar = () => {
                             </svg>
                         }
                         href='/manage/admins'
+                        isActive={path.startsWith('/manage/admins')}
                     />
                 </div>
             </div> 

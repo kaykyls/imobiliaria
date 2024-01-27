@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\ManagePropertyController;
 use App\Http\Controllers\PropertyController;
 
 Route::get('/', function () {
@@ -22,19 +23,20 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-// Route::get('/property', [PropertyController::class, 'index'])->name('property.index');
+Route::get('/property', [PropertyController::class, 'index'])->name('property.index');
 
 Route::get('/manage', function () {     
     return Inertia::render('Dashboard'); 
 })->name('manage');
 
-Route::get('/manage/properties/register', [PropertyController::class, 'register'] )->name('property.register');
+Route::get('/manage/properties/register', [ManagePropertyController::class, 'register'] )->name('manageProperty.register');
+Route::post('/manage/properties', [ManagePropertyController::class, 'store'])->name('manageProperty.store');
+Route::get('/manage/properties', [ManagePropertyController::class, 'index'])->name('manageProperty.index');
+Route::delete('/manage/properties/{property}', [ManagePropertyController::class, 'destroy'])->name('manageProperty.destroy');
 
-Route::post('/properties', [PropertyController::class, 'store'])->name('property.store');
-
-Route::get('/manage/properties', [PropertyController::class, 'index'])->name('property.index');
-
-Route::delete('/manage/properties/{property}', [PropertyController::class, 'destroy'])->name('property.destroy');
+Route::get('/manage/property', function () {     
+    return Inertia::render('AdminProperty'); 
+})->name('property');
 
 
 Route::get('/manage/admins/register', function () {     
