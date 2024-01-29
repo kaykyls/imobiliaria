@@ -3,10 +3,10 @@ import React from 'react'
 const Contact = () => {
   return (
     <>
-        <div id="#contact" className="flex container mx-auto gap-20 my-20  ">
+        <div id="#contact" className="flex flex-col md:flex-row container mx-auto gap-20 my-20  ">
             <div>
                 <h3 className="text-2xl mb-5">Entre em contato</h3>
-                <form className="flex flex-col w-[400px] ">
+                <form className="flex flex-col md:w-[400px] ">
                     <label>Nome:</label>
                     <input className="border-gray-300 mb-4" type="text" required/>
                     <label>Email:</label>

@@ -15,8 +15,8 @@ const Header = () => {
                 <Link href="/">
                     Lyks Imóveis
                 </Link>
-                <form onSubmit={handleSubmit}>
-                    <input placeholder="Pesquisar..." className="w-[300px] md:w-[700px] h-8 rounded-md border-gray-300" type="text" />
+                <form className='hidden md:block' onSubmit={handleSubmit}>
+                    <input placeholder="Pesquisar..." className="w-[300px] lg:w-[700px] h-8 rounded-md border-gray-300" type="text" />
                 </form>
                 <div className="flex items-end gap-4">
                     <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -33,12 +33,15 @@ const Header = () => {
         </div>
         <div className="border-b border-gray-300">
             <nav className="container mx-auto py-6">            
-                <ul className="flex gap-4">
+                <ul className="hidden md:flex gap-4">
                     <li><Link className="hover:text-main-color" href="/">Home</Link></li>
                     <li><Link className="hover:text-main-color" href="/#properties">Imóveis</Link></li>
                     <li><Link className="hover:text-main-color" href="/#about">Sobre</Link></li>
                     <li><Link className="hover:text-main-color" href="/#contact">Contato</Link></li>
                 </ul>
+                <form className='block md:hidden' onSubmit={handleSubmit}>
+                    <input placeholder="Pesquisar..." className="w-full h-8 rounded-md border-gray-300" type="text" />
+                </form>
             </nav>
         </div>     
     </header>

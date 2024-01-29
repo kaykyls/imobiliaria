@@ -5,9 +5,9 @@ import Contact from '@/Components/Contact'
 const Property = () => {
   return (
     <Layout>
-        <div className='container flex '>
+        <div className='container flex flex-col md:flex-row'>
             <div>
-              <div className="slide w-[800px] h-[470px] bg-black my-20">
+              <div className="slide md:w-[800px] h-[470px] bg-black my-20">
 
               </div>
               <div className='my-10'>
@@ -43,7 +43,7 @@ const Property = () => {
             </div>
             
             
-            <div id="#contact" className="flex container mx-10 gap-20 my-20  ">
+            <div id="#contact" className="md:flex md:mx-10 gap-20 my-20  ">
               <div>
                   
                   <button className=" mb-4 w-full border-gray-300  bg-gray-300 hover:bg-gray-400  color-white py-2 transition duration-500 cursor-pointer"  >WhatsApp</button>
@@ -54,7 +54,7 @@ const Property = () => {
                       <div className='h-[1px] bg-gray-300 w-full'></div>
                   </div>
                   
-                  <form className="flex flex-col w-[400px] ">
+                  <form className="flex flex-col md:w-[400px] ">
                       <label>Nome:</label>
                       <input className="border-gray-300 mb-4" type="text" required/>
                       <label>Email:</label>

@@ -99,7 +99,7 @@ const Search = () => {
           </div>
         </div>
 
-        <div className="gap-6 grid grid-cols-4 mb-8">
+        <div className=" flex flex-col gap-4 md:gap-6 md:grid md:grid-cols-3 lg:grid-cols-4">
                     <Card
                         img={bannerImg}
                         title="Lorem Ipsum"

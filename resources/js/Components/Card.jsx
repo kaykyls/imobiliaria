@@ -7,7 +7,7 @@ const Card = ({img, title, value, rooms, bathrooms, href}) => {
         <span className="absolute top-4 left-4 px-6 py-1 bg-main-color text-text-color z-40">Venda</span>
         <div className="relative group overflow-hidden">
         <img
-          className="h-[350px] object-cover group-hover:scale-110 transition"
+          className="h-[250px] object-cover group-hover:scale-110 transition"
           src={img}
           alt={title}
         />
