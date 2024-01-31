@@ -9,6 +9,7 @@ use App\Models\Address;
 use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
+use Illuminate\Support\Facades\Storage;
 
 class ManagePropertyController extends Controller
 {
@@ -18,7 +19,7 @@ class ManagePropertyController extends Controller
             'properties' => Property::all()->map(function($property) {
                 $imagePaths = explode(',', $property->images);
                 $imagePaths = array_map(function ($image) {
-                    return asset('app/storage/uploads/' . $image);
+                    return Storage::url($image);
                 }, $imagePaths);
     
                 return [
@@ -38,6 +39,35 @@ class ManagePropertyController extends Controller
             }),
             'addresses' => Address::all(),
         ]);
+    }
+
+    public function show($id) {
+        $property = Property::find($id);
+
+        $imagePaths = explode(',', $property->images);
+        $imagePaths = array_map(function ($image) {
+            return Storage::url($image);
+        }, $imagePaths);
+
+        $propertyData = [
+            'id' => $property->id,
+            'title' => $property->title,
+            'price' => $property->price,
+            'code' => $property->code,
+            'description' => $property->description,
+            'category' => $property->category,
+            'isForRent' => $property->isForRent,
+            'status' => $property->status,
+            'bedrooms' => $property->bedrooms,
+            'bathrooms' => $property->bathrooms,
+            'images' => $imagePaths,
+            'address' => $property->address,
+        ];
+
+        return Inertia::render('AdminProperty', [
+            'property' => $propertyData,
+        ]);
+
     }
 
     public function register()
@@ -78,8 +108,8 @@ class ManagePropertyController extends Controller
             $image = $manager->read($file);
             $image->scaleDown(height: 300);
 
-            $image->save(base_path('storage/app/uploads/' . $filename));
-            $path = 'uploads/' . $filename;
+            $image->save(base_path('storage/app/public/' . $filename));
+            $path = 'public/' . $filename;
 
             $imagesPaths[] = $path;
         }

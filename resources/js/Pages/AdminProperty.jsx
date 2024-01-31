@@ -12,7 +12,7 @@ const AdminProperty = () => {
           </svg>
           <span className='text-2xl'>Property</span>
         </div>
-      <Link className='bg-main-color py-2 px-10 cursor-pointer'>
+      <Link className='bg-main-color py-2 px-14 rounded-md cursor-pointer'>
         Editar
       </Link>
       </div>
@@ -44,7 +44,7 @@ const AdminProperty = () => {
           </div>
           <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <dt class="font-semibold leading-6 text-gray-900">Status</dt>
-            <dd class="mt-1 leading-6 text-gray-700 sm:col-span-2 sm:mt-0">Apartamento</dd>
+            <dd class="mt-1 leading-6 text-gray-700 sm:col-span-2 sm:mt-0">Ativo</dd>
           </div>
           <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <dt class="font-semibold leading-6 text-gray-900">Quartos</dt>

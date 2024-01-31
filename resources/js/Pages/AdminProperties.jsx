@@ -13,17 +13,17 @@ const AdminProperties = (props) => {
               <h2 className='text-2xl'>Imóveis</h2>
               <Link className='py-2 px-14 bg-main-color rounded-md' href="/manage/properties/register">Cadastrar</Link>
             </div>
-            <input className='mt-8 w-full border-gray-300 border' type="text" placeholder='Pesquisar' />
+            <input className='mt-8 w-full rounded-md border-gray-200 border' type="text" placeholder='Pesquisar' />
           </form>
 
           <div className='mt-10 '>
             <div className='items-center container justify-between flex flex-row w-full p-5 bg-gray-200 rounded-md '>
-                <div className='w-10 h-10'></div>
+                <div className='w-14 h-14'></div>
                 <p className='w-[60px]'>id</p>
-              <p className='w-[100px]'>endereço</p>
-              <p className='w-[80px]'>valor</p>
-              <p className='w-[60px]'>ativo</p>
-              <p className='w-[60px]'>tipo</p>
+                <p className='w-[100px]'>endereço</p>
+                <p className='w-[80px]'>valor</p>
+                <p className='w-[60px]'>ativo</p>
+                <p className='w-[60px]'>tipo</p>
                 <div className='flex gap-4'>
                   <div className='w-6 h-6'></div>
                   <div className='w-6 h-6'></div>
@@ -31,8 +31,8 @@ const AdminProperties = (props) => {
             </div>
 
             {props.properties.map((property) => (
-              <div key={property.id} className='items-center container justify-between flex flex-row w-full p-5 hover:bg-gray-300 '>
-                <img className='w-10 h-10' src={property.images[0]} alt="" />
+              <Link href={`/manage/properties/${property.id}`} key={property.id} className='items-center container rounded-md justify-between flex flex-row w-full p-5 hover:bg-gray-300 '>
+                <img className='w-14 h-14 rounded-md object-cover' src={property.images[0]} alt="" />
                 <p className='w-[60px]'>{property.id}</p>
                 <p className='w-[100px] whitespace-nowrap overflow-hidden text-ellipsis'>{props.addresses.find(address => address.id === property.address_id)?.street}, {props.addresses.find(address => address.id === property.address_id)?.number}, {props.addresses.find(address => address.id === property.address_id)?.district}</p>
                 <p className='w-[80px]'>R${property.price}</p>
@@ -51,7 +51,7 @@ const AdminProperties = (props) => {
                   </svg>
                   </Link>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
       </div>

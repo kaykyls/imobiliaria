@@ -32,6 +32,7 @@ Route::get('/manage', function () {
 Route::get('/manage/properties/register', [ManagePropertyController::class, 'register'] )->name('manageProperty.register');
 Route::post('/manage/properties', [ManagePropertyController::class, 'store'])->name('manageProperty.store');
 Route::get('/manage/properties', [ManagePropertyController::class, 'index'])->name('manageProperty.index');
+Route::get('/manage/properties/{property}', [ManagePropertyController::class, 'show'])->name('manageProperty.show');
 Route::delete('/manage/properties/{property}', [ManagePropertyController::class, 'destroy'])->name('manageProperty.destroy');
 
 Route::get('/manage/property', function () {     
