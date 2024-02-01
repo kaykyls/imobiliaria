@@ -18,12 +18,12 @@ const AdminProperties = (props) => {
 
           <div className='mt-10 '>
             <div className='items-center container justify-between flex flex-row w-full p-5 bg-gray-200 rounded-md '>
-                <div className='w-14 h-14'></div>
-                <p className='w-[60px]'>id</p>
-                <p className='w-[100px]'>endereço</p>
-                <p className='w-[80px]'>valor</p>
-                <p className='w-[60px]'>ativo</p>
-                <p className='w-[60px]'>tipo</p>
+                <div className='w-14'></div>
+                <p className='w-[60px] font-semibold'>ID</p>
+                <p className='w-[100px] font-semibold'>Endereço</p>
+                <p className='w-[80px] font-semibold'>Valor</p>
+                <p className='w-[60px] font-semibold'>Ativo</p>
+                <p className='w-[60px] font-semibold'>Tipo</p>
                 <div className='flex gap-4'>
                   <div className='w-6 h-6'></div>
                   <div className='w-6 h-6'></div>
@@ -31,10 +31,10 @@ const AdminProperties = (props) => {
             </div>
 
             {props.properties.map((property) => (
-              <Link href={`/manage/properties/${property.id}`} key={property.id} className='items-center container rounded-md justify-between flex flex-row w-full p-5 hover:bg-gray-300 '>
+              <Link href={`/manage/properties/${property.id}`} key={property.id} className='items-center container rounded-md justify-between flex flex-row w-full p-5 hover:bg-gray-100 '>
                 <img className='w-14 h-14 rounded-md object-cover' src={property.images[0]} alt="" />
                 <p className='w-[60px]'>{property.id}</p>
-                <p className='w-[100px] whitespace-nowrap overflow-hidden text-ellipsis'>{props.addresses.find(address => address.id === property.address_id)?.street}, {props.addresses.find(address => address.id === property.address_id)?.number}, {props.addresses.find(address => address.id === property.address_id)?.district}</p>
+                <p className='w-[100px] whitespace-nowrap overflow-hidden text-ellipsis'>{property.address.street}, {property.address.number}, {property.address.district}</p>
                 <p className='w-[80px]'>R${property.price}</p>
                 {/* <div className='w-[60px] flex justify-center'>{property.status ? <div className="bg-green-500 w-2 h-2 rounded-full"></div> : <div className="bg-red-500 w-2 h-2 rounded-full"></div>}</div> */}
                 <div className='w-[60px]'>{property.status ? "Ativo" : "Inativo"}</div>

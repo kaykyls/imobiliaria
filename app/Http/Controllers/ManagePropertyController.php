@@ -21,6 +21,8 @@ class ManagePropertyController extends Controller
                 $imagePaths = array_map(function ($image) {
                     return Storage::url($image);
                 }, $imagePaths);
+
+                $address = Address::find($property->address_id);
     
                 return [
                     'id' => $property->id,
@@ -34,10 +36,9 @@ class ManagePropertyController extends Controller
                     'bedrooms' => $property->bedrooms,
                     'bathrooms' => $property->bathrooms,
                     'images' => $imagePaths,
-                    'address' => $property->address,
+                    'address' => $address,
                 ];
             }),
-            'addresses' => Address::all(),
         ]);
     }
 
@@ -48,6 +49,8 @@ class ManagePropertyController extends Controller
         $imagePaths = array_map(function ($image) {
             return Storage::url($image);
         }, $imagePaths);
+
+        $address = Address::find($property->address_id);
 
         $propertyData = [
             'id' => $property->id,
@@ -61,7 +64,7 @@ class ManagePropertyController extends Controller
             'bedrooms' => $property->bedrooms,
             'bathrooms' => $property->bathrooms,
             'images' => $imagePaths,
-            'address' => $property->address,
+            'address' => $address,
         ];
 
         return Inertia::render('AdminProperty', [

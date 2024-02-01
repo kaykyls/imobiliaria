@@ -16,7 +16,7 @@ export default function Home(props) {
                     <h2 className="text-2xl">Imóveis</h2>
                     <span className="w-10 block h-1 bg-main-color"></span>
                 </div>
-                <div className=" flex flex-col gap-4 md:gap-6 md:grid md:grid-cols-3 lg:grid-cols-4">
+                <div className="flex flex-col gap-4 md:gap-6 md:grid md:grid-cols-3 lg:grid-cols-4">
                     <Card
                         img={bannerImg}
                         title="Lorem Ipsum"

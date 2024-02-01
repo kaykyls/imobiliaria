@@ -7,9 +7,11 @@ const AdminProperty = () => {
     <PanelLayout>
       <div className='flex justify-between mb-8'>
         <div className="flex items-center gap-8">
-          <svg onClick={() => history.back()} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 cursor-pointer">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
-          </svg>
+          <Link href='/manage/properties'>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 cursor-pointer">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+            </svg>
+          </Link>
           <span className='text-2xl'>Property</span>
         </div>
       <Link className='bg-main-color py-2 px-14 rounded-md cursor-pointer'>
