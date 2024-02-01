@@ -34,11 +34,8 @@ Route::post('/manage/properties', [ManagePropertyController::class, 'store'])->n
 Route::get('/manage/properties', [ManagePropertyController::class, 'index'])->name('manageProperty.index');
 Route::get('/manage/properties/{property}', [ManagePropertyController::class, 'show'])->name('manageProperty.show');
 Route::delete('/manage/properties/{property}', [ManagePropertyController::class, 'destroy'])->name('manageProperty.destroy');
-
-Route::get('/manage/property', function () {     
-    return Inertia::render('AdminProperty'); 
-})->name('property');
-
+Route::get('/manage/properties/{property}/edit', [ManagePropertyController::class, 'edit'])->name('manageProperty.edit');
+Route::put('/manage/properties/{property}', [ManagePropertyController::class, 'update'])->name('manageProperty.update');
 
 Route::get('/manage/admins/register', function () {     
     return Inertia::render('RegisterAdmin'); 

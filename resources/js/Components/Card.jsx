@@ -7,7 +7,7 @@ const Card = ({img, title, value, rooms, bathrooms, href}) => {
         <span className="absolute top-4 left-4 px-6 py-1 bg-main-color text-text-color z-40">Venda</span>
         <div className="relative group overflow-hidden">
         <img
-          className="h-[250px] object-cover group-hover:scale-110 transition"
+          className="h-[250px] object-cover w-full group-hover:scale-110 transition"
           src={img}
           alt={title}
         />
@@ -16,7 +16,7 @@ const Card = ({img, title, value, rooms, bathrooms, href}) => {
         <div className="flex flex-col p-4">
             <h3 className="text-2xl font-semibold text-ellipsis overflow-hidden">{title}</h3>
             <p className="text-xl">R${value}</p>
-            <div className="flex justify-between mt-4">
+            <div className="flex gap-4 mt-4">
                 <div className="flex gap-4">
                     <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_177_234)">

@@ -20,7 +20,7 @@ const AdminProperties = (props) => {
             <div className='items-center container justify-between flex flex-row w-full p-5 bg-gray-200 rounded-md '>
                 <div className='w-14'></div>
                 <p className='w-[60px] font-semibold'>ID</p>
-                <p className='w-[100px] font-semibold'>Endereço</p>
+                <p className='w-[150px] font-semibold'>Título</p>
                 <p className='w-[80px] font-semibold'>Valor</p>
                 <p className='w-[60px] font-semibold'>Ativo</p>
                 <p className='w-[60px] font-semibold'>Tipo</p>
@@ -34,13 +34,13 @@ const AdminProperties = (props) => {
               <Link href={`/manage/properties/${property.id}`} key={property.id} className='items-center container rounded-md justify-between flex flex-row w-full p-5 hover:bg-gray-100 '>
                 <img className='w-14 h-14 rounded-md object-cover' src={property.images[0]} alt="" />
                 <p className='w-[60px]'>{property.id}</p>
-                <p className='w-[100px] whitespace-nowrap overflow-hidden text-ellipsis'>{property.address.street}, {property.address.number}, {property.address.district}</p>
+                <p className='w-[150px] whitespace-nowrap overflow-hidden text-ellipsis'>{property.title}</p>
                 <p className='w-[80px]'>R${property.price}</p>
                 {/* <div className='w-[60px] flex justify-center'>{property.status ? <div className="bg-green-500 w-2 h-2 rounded-full"></div> : <div className="bg-red-500 w-2 h-2 rounded-full"></div>}</div> */}
                 <div className='w-[60px]'>{property.status ? "Ativo" : "Inativo"}</div>
                 <p className='w-[60px]'>{property.category ? "Casa" : "Apartamento"}</p>
                 <div className='flex gap-4'>
-                  <Link href={`/manage/properties/edit/${property.id}`}>
+                  <Link href={`/manage/properties/${property.id}/edit`}>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"       strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                       <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
                     </svg>

@@ -148,6 +148,94 @@ class ManagePropertyController extends Controller
         return Redirect::route('manageProperty.index');
     }
 
+    public function edit($id) {
+        $property = Property::find($id);
+
+        $imagePaths = explode(',', $property->images);
+        $imagePaths = array_map(function ($image) {
+            return Storage::url($image);
+        }, $imagePaths);
+
+        $address = Address::find($property->address_id);
+
+        return Inertia::render("EditProperty", [
+            'property' => [
+                'id' => $property->id,
+                'title' => $property->title,
+                'price' => $property->price,
+                'code' => $property->code,
+                'description' => $property->description,
+                'category' => $property->category,
+                'isForRent' => $property->isForRent,
+                'status' => $property->status,
+                'bedrooms' => $property->bedrooms,
+                'bathrooms' => $property->bathrooms,
+                'images' => $imagePaths,
+                'address' => $address,
+            ]
+        ]);
+    }
+
+    public function update(Request $request) {
+        $property = Property::find($request->code);
+
+    $property->title = $request->title;
+    $property->price = $request->price;
+    $property->code = $request->code;
+    $property->description = $request->description;
+    $property->category = $request->category == 'Casa' ? true : false;
+    $property->isForRent = $request->isForRent == 'Aluguel' ? true : false;
+    $property->status = $request->status == 'Ativo' ? true : false;
+    $property->bedrooms = $request->bedrooms;
+    $property->bathrooms = $request->bathrooms;
+
+    // Salvar a atualização dos dados da propriedade
+    $property->save();
+
+    // Atualizar os dados do endereço
+    $address = Address::find($property->address_id);
+    $address->cep = $request->cep;
+    $address->district = $request->district;
+    $address->street = $request->street;
+    $address->number = $request->number;
+    $address->complement = $request->complement;
+    $address->save();
+
+    // Verificar se há novas imagens para adicionar
+    if ($request->hasFile('images')) {
+        $manager = ImageManager::gd();
+        $files = $request->file('images');
+
+        $newImagesPaths = [];
+
+        foreach ($files as $file) {
+            $originalFilename = $file->getClientOriginalName();
+            $filename = time() . '-' . $originalFilename;
+
+            $image = $manager->read($file);
+            $image->scaleDown(height: 300);
+            $image->save(base_path('storage/app/public/' . $filename));
+            $path = 'public/' . $filename;
+
+            $newImagesPaths[] = $path;
+        }
+
+        // Remover imagens existentes que não estão presentes no request
+        $existingImages = explode(',', $property->images);
+        $existingImages = array_filter($existingImages, function ($image) use ($newImagesPaths) {
+            return in_array($image, $newImagesPaths);
+        });
+
+        // Concatenar as novas imagens com as imagens existentes
+        $allImagesPaths = array_merge($existingImages, $newImagesPaths);
+
+        // Salvar a lista atualizada de imagens
+        $property->images = implode(',', $allImagesPaths);
+        $property->save();
+    }
+        return Redirect::route('manageProperty.show', $property);
+    }
+
     public function destroy($id)
     {
         $property = Property::find($id);
