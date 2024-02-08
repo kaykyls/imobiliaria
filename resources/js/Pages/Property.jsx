@@ -1,20 +1,51 @@
 import React from 'react'
 import Layout from '@/Layouts/Layout'
 import Contact from '@/Components/Contact'
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-const Property = () => {
+const Property = ({property}) => {
+  const {title, address, price, id, description, category, status, bedrooms, bathrooms, images} = property
+
+  const sliderSettings = {
+    customPaging: function(i) {
+      return (
+        <a>
+          <img className='object-cover w-full h-full' src={images[i]} />
+        </a>
+      );
+    },
+    autoplay: true,
+    dots: true,
+    dotsClass: "[&>li]:inline-block [&>li]:w-16 [&>li]:h-16 mx-auto [&>li]:cursor-pointer [&>li]:mr-2 text-center",
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1
+  };
+
   return (
     <Layout>
         <div className='container flex flex-col md:flex-row'>
             <div>
-              <div className="slide md:w-[800px] h-[470px] bg-black my-20">
-
+              <div>
+                <div className="slide md:w-[800px] h-[470px] my-20">
+                  <Slider {...sliderSettings}>
+                    {images.map((image, index) => (
+                      <div key={index}>
+                        <img className='w-full h-[470px] object-cover' src={image} alt={title}/>
+                      </div>
+                    ))}
+                  </Slider>
+                </div>
               </div>
+              
               <div className='my-10'>
-                <h1 className="font-semibold text-2xl mb-5	">Title</h1>
-                <h4>Endereço: Lorem ipsum, dolor sit amet consectetur adipisicing elit.</h4>
-                <p className='mt-7 leading-loose'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Velit voluptates distinctio in eaque corporis necessitatibus laudantium consequuntur, deserunt aperiam vitae doloremque, laborum expedita delectus itaque sit animi voluptatum id aliquid?</p>
-                <h4 className="font-semibold text-2xl mt-5	">R$50.000</h4>
+                <h1 className="font-semibold text-2xl mb-5	">{title}</h1>
+                <h4>Endereço: {address.street}, {address.number}, {address.district}, {address.cep}.</h4>
+                <p className='mt-7 leading-loose'>{description}</p>
+                <h4 className="font-semibold text-2xl mt-5	">R${price}</h4>
                 
                 <div className="flex gap-5 mt-4">
                   <div className="flex gap-4">
@@ -29,13 +60,13 @@ const Property = () => {
                           </clipPath>
                           </defs>
                       </svg>
-                      <span className="flex items-center">quartos</span>
+                      <span className="flex items-center">{bedrooms} quarto{bedrooms > 1 && "s"}</span>
                   </div>
                   <div className="flex gap-4">
                       <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path fill-rule="evenodd" clip-rule="evenodd" d="M16.0325 7.59501C14.3671 7.97733 13.125 9.4686 13.125 11.25V12.1875H20.625V11.25C20.625 9.563 19.511 8.13617 17.9785 7.665C18.2729 7.01482 18.9274 6.5625 19.6875 6.5625C20.723 6.5625 21.5625 7.40196 21.5625 8.4375V15.9375H5.625V17.8125H6.5625V22.5C6.5625 24.0532 7.8217 25.3125 9.375 25.3125H20.625C22.1782 25.3125 23.4375 24.0532 23.4375 22.5V17.8125H24.375V15.9375H23.4375V8.4375C23.4375 6.36644 21.7586 4.6875 19.6875 4.6875C17.9061 4.6875 16.4149 5.92963 16.0325 7.59501ZM8.4375 17.8125H21.5625V22.5C21.5625 23.0177 21.1427 23.4375 20.625 23.4375H9.375C8.85724 23.4375 8.4375 23.0177 8.4375 22.5V17.8125ZM16.875 9.375C17.569 9.375 18.175 9.75206 18.4991 10.3125H15.2509C15.575 9.75206 16.181 9.375 16.875 9.375Z" fill="#1E1E1E"/>
                       </svg>
-                      <span className="flex items-center">banheiros</span>
+                      <span className="flex items-center">{bathrooms} banheiro{bathrooms > 1 && "s"}</span>
                   </div>
                 </div>
 

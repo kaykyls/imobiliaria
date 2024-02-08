@@ -2,7 +2,7 @@ import aboutImg from '/public/img/aboutSvg.svg';
 
 export default function About() {
   return (
-    <div name="about" id="#about" className="container">
+    <div name="about" id="about" className="container">
         <h2 className="text-2xl">Sobre Nós</h2>
         <span className="w-20 block h-1 bg-main-color"></span>
         <div className="mx-auto mt-8 flex flex-col md:flex-row gap-10">

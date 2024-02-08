@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Storage;
 
 class ManagePropertyController extends Controller
 {
-    public function index()
+    public function indexAdmin()
     {
         return Inertia::render('AdminProperties', [
             'properties' => Property::all()->map(function($property) {
@@ -42,7 +42,71 @@ class ManagePropertyController extends Controller
         ]);
     }
 
+    public function index() {
+        $properties = Property::paginate(8);
+
+        return Inertia::render('Home', [
+            'properties' => $properties->map(function($property) {
+                $imagePaths = explode(',', $property->images);
+                $imagePaths = array_map(function ($image) {
+                    return Storage::url($image);
+                }, $imagePaths);
+    
+                $address = Address::find($property->address_id);
+    
+                return [
+                    'id' => $property->id,
+                    'title' => $property->title,
+                    'price' => $property->price,
+                    'code' => $property->code,
+                    'description' => $property->description,
+                    'category' => $property->category,
+                    'isForRent' => $property->isForRent,
+                    'status' => $property->status,
+                    'bedrooms' => $property->bedrooms,
+                    'bathrooms' => $property->bathrooms,
+                    'images' => $imagePaths,
+                    'address' => $address,
+                ];
+            }),
+            'properties_pagination' => $properties,
+        ]);
+    }
+
     public function show($id) {
+        // dd($id);
+        $property = Property::find($id);
+
+        // dd($property);
+
+        $imagePaths = explode(',', $property->images);
+        $imagePaths = array_map(function ($image) {
+            return Storage::url($image);
+        }, $imagePaths);
+
+        $address = Address::find($property->address_id);
+
+        $propertyData = [
+            'id' => $property->id,
+            'title' => $property->title,
+            'price' => $property->price,
+            'code' => $property->code,
+            'description' => $property->description,
+            'category' => $property->category,
+            'isForRent' => $property->isForRent,
+            'status' => $property->status,
+            'bedrooms' => $property->bedrooms,
+            'bathrooms' => $property->bathrooms,
+            'images' => $imagePaths,
+            'address' => $address,
+        ];
+
+        return Inertia::render('Property', [
+            'property' => $propertyData,
+        ]);
+    }
+
+    public function showAdmin($id) {
         $property = Property::find($id);
 
         $imagePaths = explode(',', $property->images);
@@ -109,7 +173,7 @@ class ManagePropertyController extends Controller
             $filename = time() . '-' . $originalFilename;
 
             $image = $manager->read($file);
-            $image->scaleDown(height: 300);
+            $image->scaleDown(height: 500);
 
             $image->save(base_path('storage/app/public/' . $filename));
             $path = 'public/' . $filename;
@@ -247,7 +311,7 @@ class ManagePropertyController extends Controller
                 $filename = time() . '-' . $originalFilename;
         
                 $image = $manager->read($file);
-                $image->scaleDown(height: 300);
+                $image->scaleDown(height: 500);
         
                 $image->save(base_path('storage/app/public/' . $filename));
                 $path = 'public/' . $filename;

@@ -3,7 +3,7 @@ import { Link } from '@inertiajs/react'
 
 const Card = ({img, title, value, rooms, bathrooms, href}) => {
   return (
-    <Link href="/" className="w-[100%] relative border border-gray-300 cursor-pointer">
+    <Link href={href} className="w-[100%] relative border border-gray-300 cursor-pointer">
         <span className="absolute top-4 left-4 px-6 py-1 bg-main-color text-text-color z-40">Venda</span>
         <div className="relative group overflow-hidden">
         <img

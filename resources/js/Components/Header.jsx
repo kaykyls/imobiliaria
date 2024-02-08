@@ -9,7 +9,7 @@ const Header = () => {
     }
 
   return (
-    <header>
+    <header className='sticky top-0 left-0 bg-white w-full z-50'>
         <div className="border-b border-gray-300 py-6">
             <div className="container mx-auto flex justify-between items-end">
                 <Link href="/">
