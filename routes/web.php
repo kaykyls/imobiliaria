@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\ManagePropertyController;
 use App\Http\Controllers\PropertyController;
+use App\Http\Controllers\ContactController;
 
 Route::get('/', function () {
     return Inertia::render('Home');
@@ -28,6 +29,8 @@ Route::get('/property', [PropertyController::class, 'index'])->name('property.in
 Route::get('/manage', function () {     
     return Inertia::render('Dashboard'); 
 })->name('manage');
+
+Route::post('/contact', ContactController::class)->name('contact');
 
 Route::get('/manage/properties/register', [ManagePropertyController::class, 'register'] )->name('manageProperty.register');
 Route::post('/manage/properties', [ManagePropertyController::class, 'store'])->name('manageProperty.store');
