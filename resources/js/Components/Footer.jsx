@@ -25,7 +25,7 @@ const Footer = () => {
                 </ul>
                 <ul>
                     <li className ="mb-2 font-semibold">Outros</li>
-                    <li><Link href='/'>Admin</Link></li>
+                    <li><Link href='/manage'>Admin</Link></li>
                 </ul>
             </div>
             <div>
