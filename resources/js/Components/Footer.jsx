@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer className="bg-black text-white">
         <div className="flex flex-col gap-8 container mx-auto py-10 justify-between">
-            <div className="grid grid-cols-2 md:flex md:flex-row gap-12 ">
+            <div className="grid grid-cols-2 md:flex md:flex-row gap-12">
                 <ul>
                     <li className ="mb-2 font-semibold">Social</li>
                     <li><Link href='https://www.facebook.com/'>Facebook</Link></li>
@@ -19,9 +19,9 @@ const Footer = () => {
                 </ul>
                 <ul>
                     <li className ="mb-2 font-semibold">Menu</li>
-                    <li><Link href='#inicio'>Início</Link></li>
-                    <li><Link href='#imoveis'>Imóveis</Link></li>
-                    <li><Link href='#sobre'>Sobre</Link></li>
+                    <li><Link href='/'>Início</Link></li>
+                    <li><Link href='/#properties'>Imóveis</Link></li>
+                    <li><Link href='/#about'>Sobre</Link></li>
                 </ul>
                 <ul>
                     <li className ="mb-2 font-semibold">Outros</li>

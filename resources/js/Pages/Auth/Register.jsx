@@ -27,79 +27,103 @@ export default function Register() {
     const submit = (e) => {
         e.preventDefault();
 
-        post(route('register'));
+        post(route('register.store'));
     };
 
     return (
         <PanelLayout>
             <Head title="Register" />
+            <div className="flex gap-4 items-center mb-8">
+                <svg
+                onClick={() => history.back()}
+                className="cursor-pointer"
+                width="24"
+                height="25"
+                viewBox="0 0 24 25"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                >
+                <path
+                    d="M19 12.5H5"
+                    stroke="black"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                />
+                <path
+                    d="M12 19.5L5 12.5L12 5.5"
+                    stroke="black"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                />
+                </svg>
+                <h1 className="text-2xl">Cadastrar Imóvel</h1>
+            </div>
+
 
             <form onSubmit={submit}>
                 <div>
-                    <InputLabel htmlFor="name" value="Name" />
-
-                    <TextInput
-                        id="name"
-                        name="name"
-                        value={data.name}
-                        className="mt-1 block w-full"
-                        autoComplete="name"
-                        isFocused={true}
-                        onChange={handleOnChange}
-                        required
-                    />
-
+                    <div className="flex">
+                        <label className="w-40">Nome</label>
+                        <input
+                            onChange={handleOnChange}
+                            className="w-full border-gray-200 rounded-md mb-4"
+                            type="text"
+                            name="name"
+                            value={data.name}
+                            required
+                            placeholder="Digite o título"
+                        />
+                    </div>
                     <InputError message={errors.name} className="mt-2" />
                 </div>
 
-                <div className="mt-4">
-                    <InputLabel htmlFor="email" value="Email" />
-
-                    <TextInput
-                        id="email"
-                        type="email"
-                        name="email"
-                        value={data.email}
-                        className="mt-1 block w-full"
-                        autoComplete="username"
-                        onChange={handleOnChange}
-                        required
-                    />
-
+                <div>
+                    <div className="flex">
+                        <label className="w-40">Email</label>
+                        <input
+                            onChange={handleOnChange}
+                            className="w-full border-gray-200 rounded-md mb-4"
+                            type="email"
+                            name="email"
+                            value={data.email}
+                            required
+                            placeholder="Digite o título"
+                        />
+                    </div>
                     <InputError message={errors.email} className="mt-2" />
                 </div>
 
-                <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
-
-                    <TextInput
-                        id="password"
-                        type="password"
-                        name="password"
-                        value={data.password}
-                        className="mt-1 block w-full"
-                        autoComplete="new-password"
-                        onChange={handleOnChange}
-                        required
-                    />
-
+                <div>
+                    <div className="flex">
+                        <label className="w-40">Senha</label>
+                        <input
+                            onChange={handleOnChange}
+                            className="w-full border-gray-200 rounded-md mb-4"
+                            type="password"
+                            name="password"
+                            value={data.password}
+                            required
+                            placeholder="Digite o título"
+                        />
+                    </div>
                     <InputError message={errors.password} className="mt-2" />
                 </div>
 
-                <div className="mt-4">
-                    <InputLabel htmlFor="password_confirmation" value="Confirm Password" />
-
-                    <TextInput
-                        id="password_confirmation"
-                        type="password"
-                        name="password_confirmation"
-                        value={data.password_confirmation}
-                        className="mt-1 block w-full"
-                        autoComplete="new-password"
-                        onChange={handleOnChange}
-                        required
-                    />
-
+                <div>
+                    <div className="flex">
+                        <label className="w-40">Confirmar senha</label>
+                        <input
+                            onChange={handleOnChange}
+                            className="w-full border-gray-200 rounded-md mb-4"
+                            type="password"
+                            name="password_confirmation"
+                            value={data.password_confirmation}
+                            required
+                            placeholder="Digite o título"
+                        />
+                    </div>
                     <InputError message={errors.password_confirmation} className="mt-2" />
                 </div>
 

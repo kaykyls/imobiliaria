@@ -1,36 +1,40 @@
 import PanelLayout from "@/Layouts/PanelLayout"
+import { Link } from "@inertiajs/react"
 
-export default function Admin(){
+export default function Admin({admin}){
+  const {id, name, email} = admin
+
   return(
       <PanelLayout>
-        <div className='container'>
-          <div className='flex justify-between mb-8'>
-            <div className="flex flex-row gap-2">
-              <div className="mt-2">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
-                </svg>
-              </div>
-              <input className=' text-2xl cursor-pointer' type="submit" value="Admins" />
-          </div>
-          <input className='bg-main-color py-2 px-10 cursor-pointer' type="submit" value="Editar" />
+        <div className='flex justify-between mb-8'>
+        <div className="flex items-center gap-8">
+          <Link href='/manage/admins'>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 cursor-pointer">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+            </svg>
+          </Link>
+          <span className='text-2xl'>Admin</span>
         </div>
-        <div className=''>
-          <form action="" className='flex flex-col mt-10 w-[400px] gap-2' >
-            <div className='flex'>
-              <label className='w-20 ' htmlFor="">Nome:</label>
-              <p>Fulano</p>
-            </div>
-            <div className='flex'>
-            <label className='w-20 '  htmlFor="">Email</label>
-            <p>email@gmail.com</p>
-            </div>
-          </form>
-        </div>
-        
-
+      <Link href={`/manage/admins/${id}/edit`} className='bg-main-color py-2 px-14 rounded-md cursor-pointer'>
+        Editar
+      </Link>
       </div>
-
+      <div class="px-4 sm:px-0">
+        <h3 class="text-base font-semibold leading-7 text-gray-900">Nome do administrador</h3>
+        <p class="mt-1 max-w-2xl leading-6 text-gray-500">{name}</p>
+      </div>
+      <div class="mt-6 border-t border-gray-100">
+        <dl class="divide-y divide-gray-100">
+          <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt class="font-semibold leading-6 text-gray-900">ID</dt>
+            <dd class="mt-1 leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{id}</dd>
+          </div>
+          <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt class="font-semibold leading-6 text-gray-900">Email</dt>
+            <dd class="mt-1 leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{email}</dd>
+          </div>
+        </dl>
+      </div>
     </PanelLayout>
     
   )
