@@ -14,9 +14,7 @@ Route::get('/', [ManagePropertyController::class, 'index'])->name('index');
 
 Route::get('/properties/{property}', [ManagePropertyController::class, 'show'])->name('manageProperty.show');
 
-Route::get('/search', function () {
-    return Inertia::render('Search');
-})->name('search');
+Route::get('/search', [ManagePropertyController::class, 'search'])->name('search');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

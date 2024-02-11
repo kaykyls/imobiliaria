@@ -342,4 +342,39 @@ class ManagePropertyController extends Controller
 
         return Redirect::route('manageProperty.index');
     }
+
+    public function search(){
+        $search = request('q');
+        
+        if($search){
+            $properties = Property::where([['title', 'like', '%'.$search.'%']])->get();
+        }
+
+        return Inertia::render('Search', [
+            'properties' => $properties->map(function($property) {
+                $imagePaths = explode(',', $property->images);
+                $imagePaths = array_map(function ($image) {
+                    return Storage::url($image);
+                }, $imagePaths);
+    
+                $address = Address::find($property->address_id);
+    
+                return [
+                    'id' => $property->id,
+                    'title' => $property->title,
+                    'price' => $property->price,
+                    'code' => $property->code,
+                    'description' => $property->description,
+                    'category' => $property->category,
+                    'isForRent' => $property->isForRent,
+                    'status' => $property->status,
+                    'bedrooms' => $property->bedrooms,
+                    'bathrooms' => $property->bathrooms,
+                    'images' => $imagePaths,
+                    'address' => $address,
+                ];
+            }),
+            'search' => $search
+        ]);
+    }
 }
