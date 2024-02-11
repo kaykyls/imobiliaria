@@ -5,8 +5,8 @@ import TextInput from '@/Components/TextInput';
 import { Link, useForm, usePage } from '@inertiajs/react';
 import { Transition } from '@headlessui/react';
 
-export default function UpdateProfileInformation({ mustVerifyEmail, status, className }) {
-    const user = usePage().props.auth.user;
+export default function UpdateProfileInformation({ mustVerifyEmail, user , className }) {
+    // const user = usePage().props.auth.user;
 
     const { data, setData, patch, errors, processing, recentlySuccessful } = useForm({
         name: user.name,
@@ -22,14 +22,14 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
     return (
         <section className={className}>
             <header>
-                <h2 className="text-lg font-medium text-gray-900">Profile Information</h2>
+                <h2 className="text-lg font-medium text-gray-900">Informações do admin</h2>
 
                 <p className="mt-1 text-sm text-gray-600">
-                    Update your account's profile information and email address.
+                    Atualize seu nome de perfil ou endereço de email.
                 </p>
             </header>
 
-            <form onSubmit={submit} className="mt-6 space-y-6">
+            <form onSubmit={submit} className="space-y-6 mt-6">
                 <div>
                     <InputLabel htmlFor="name" value="Name" />
 

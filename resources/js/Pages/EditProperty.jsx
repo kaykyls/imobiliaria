@@ -3,11 +3,17 @@ import PanelLayout from '@/Layouts/PanelLayout'
 import { router, useForm } from '@inertiajs/react'
 
 const EditProperty = ({property}) => {
-    const {title, address, price, id, description, category, status, bedrooms, bathrooms, images} = property
+    let {title, address, price, id, description, category, isForRent, status, bedrooms, bathrooms, images} = property
 
-    console.log(property)
+    console.log(category, status, isForRent)
 
-    const { data, setData, put } = useForm({
+    category = category === 0 ? 'Apartamento' : 'Casa'
+    status = status === 0 ? 'Inativo' : 'Ativo'
+    isForRent = isForRent === 0 ? 'Venda' : 'Aluguel'
+
+    console.log(category, status, isForRent)
+
+    const { data, setData } = useForm({
         title: title,
         cep: address.cep,
         district: address.district,
@@ -18,7 +24,7 @@ const EditProperty = ({property}) => {
         code: id,
         description: description,
         category: category,
-        isForRent: category,
+        isForRent: isForRent,
         status: status,
         bedrooms: bedrooms,
         bathrooms: bathrooms,
@@ -285,8 +291,8 @@ const EditProperty = ({property}) => {
                 onChange={handleInputChange}
                 required
               >
-                <option value="casa">Casa</option>
-                <option value="apartamento">Apartamento</option>
+                <option value="Casa">Casa</option>
+                <option value="Apartamento">Apartamento</option>
               </select>
             </div>
             <div className="flex">
@@ -298,8 +304,8 @@ const EditProperty = ({property}) => {
                 onChange={handleInputChange}
                 required
               >
-                <option value="venda">Venda</option>
-                <option value="aluguel">Aluguel</option>
+                <option value="Venda">Venda</option>
+                <option value="Aluguel">Aluguel</option>
               </select>
             </div>
             <div className="flex">
@@ -311,8 +317,8 @@ const EditProperty = ({property}) => {
                 onChange={handleInputChange}
                 required
               >
-                <option value="ativo">Ativo</option>
-                <option value="inativo">Inativo</option>
+                <option value="Ativo">Ativo</option>
+                <option value="Inativo">Inativo</option>
               </select>
             </div>
             <div className="flex">

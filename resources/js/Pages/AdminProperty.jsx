@@ -3,9 +3,9 @@ import PanelLayout from '@/Layouts/PanelLayout'
 import { Link } from '@inertiajs/react'
 
 const AdminProperty = ({property}) => {
-  const {title, address, price, id, description, category, status, bedrooms, bathrooms, images} = property
+  const {title, address, price, id, description, category, isForRent, status, bedrooms, bathrooms, images} = property
   
-  console.log(category)
+  console.log(property)
 
   return (
     <PanelLayout>
@@ -29,6 +29,10 @@ const AdminProperty = ({property}) => {
       <div class="mt-6 border-t border-gray-100">
         <dl class="divide-y divide-gray-100">
           <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt class="font-semibold leading-6 text-gray-900">Código</dt>
+            <dd class="mt-1 leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{id}</dd>
+          </div>
+          <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <dt class="font-semibold leading-6 text-gray-900">Logradouro</dt>
             <dd class="mt-1 leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{address.street}</dd>
           </div>
@@ -37,20 +41,20 @@ const AdminProperty = ({property}) => {
             <dd class="mt-1 leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{price}</dd>
           </div>
           <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-            <dt class="font-semibold leading-6 text-gray-900">Código</dt>
-            <dd class="mt-1 leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{id}</dd>
-          </div>
-          <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <dt class="font-semibold leading-6 text-gray-900">Descrição</dt>
             <dd class="mt-1 leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{description}</dd>
           </div>
           <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <dt class="font-semibold leading-6 text-gray-900">Categoria</dt>
-            <dd class="mt-1 leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{category ? "Apartamento" : "Casa"}</dd>
+            <dd class="mt-1 leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{category ? "Casa" : "Apartamento"}</dd>
+          </div>
+          <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt class="font-semibold leading-6 text-gray-900">Venda/Aluguel</dt>
+            <dd class="mt-1 leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{isForRent ? "Aluguel" : "Venda"}</dd>
           </div>
           <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <dt class="font-semibold leading-6 text-gray-900">Status</dt>
-            <dd class="mt-1 leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{status ? "Inativo" : "Ativo"}</dd>
+            <dd class="mt-1 leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{status ? "Ativo" : "Inativo"}</dd>
           </div>
           <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <dt class="font-semibold leading-6 text-gray-900">Quartos</dt>

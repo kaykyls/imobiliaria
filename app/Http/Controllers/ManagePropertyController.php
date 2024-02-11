@@ -332,7 +332,7 @@ class ManagePropertyController extends Controller
         $address->complement = $request->complement;
         $address->save();
 
-        return Redirect::route('manageProperty.show', $property);
+        return Redirect::route('manageProperty.showAdmin', $property);
     }
 
     public function destroy($id)
