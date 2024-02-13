@@ -9,6 +9,7 @@ use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\DashboardController;
 
 Route::get('/', [ManagePropertyController::class, 'index'])->name('index');
 
@@ -16,23 +17,17 @@ Route::get('/properties/{property}', [ManagePropertyController::class, 'show'])-
 
 Route::get('/search', [ManagePropertyController::class, 'search'])->name('search');
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::get('/property', [PropertyController::class, 'index'])->name('property.index');
 
 Route::post('/contact', ContactController::class)->name('contact');
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('/manage', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/manage/admins', [AdminController::class, 'index'])->name('admins');
     Route::get('manage/admins/register', [RegisteredUserController::class, 'create']);
     Route::get('/manage/admins/{admin}', [AdminController::class, 'show'])->name('admins.show');
     Route::delete('/manage/admins/{admin}', [AdminController::class, 'destroy'])->name('admins.destroy');
 
-    Route::get('/manage', function () {     
-        return Inertia::render('Dashboard'); 
-    })->name('manage');
 
     Route::get('/manage/properties/register', [ManagePropertyController::class, 'register'])->name('manageProperty.register');
     Route::post('/manage/properties', [ManagePropertyController::class, 'store'])->name('manageProperty.store');

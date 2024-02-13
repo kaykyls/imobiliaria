@@ -17,7 +17,7 @@ const AdminProperties = (props) => {
           </form>
 
           <div className='mt-10 '>
-            <div className='items-center container justify-between flex flex-row w-full p-5 bg-gray-200 rounded-md '>
+            <div className='items-center container justify-between flex flex-row w-full p-5 bg-gray-300 rounded-md '>
                 <div className='w-14'></div>
                 <p className='w-[60px] font-semibold'>ID</p>
                 <p className='w-[150px] font-semibold'>Título</p>
@@ -29,9 +29,9 @@ const AdminProperties = (props) => {
                   <div className='w-6 h-6'></div>
                 </div>
             </div>
-            <div className='max-h-[650px] overflow-auto'>
+            <div className='max-h-[600px] overflow-auto'>
               {props.properties.map((property) => (
-                <Link href={`/manage/properties/${property.id}`} key={property.id} className='items-center container rounded-md justify-between flex flex-row w-full p-5 hover:bg-gray-100 '>
+                <Link href={`/manage/properties/${property.id}`} key={property.id} className='items-center container rounded-md justify-between flex flex-row w-full p-5 hover:bg-white '>
                   <img className='w-14 h-14 rounded-md object-cover' src={property.images[0]} alt="" />
                   <p className='w-[60px]'>{property.id}</p>
                   <p className='w-[150px] whitespace-nowrap overflow-hidden text-ellipsis'>{property.title}</p>
