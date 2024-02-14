@@ -1,5 +1,5 @@
 import PanelLayout from "@/Layouts/PanelLayout";
-import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
+import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 
 export default function Dashboard({active, inactive, forSale, forRent, data}) {      
       const COLORS = ['#5BC0BE', '#2F8584'];

@@ -7,10 +7,7 @@ import PanelLayout from '@/Layouts/PanelLayout';
 
 export default function Edit({ user, mustVerifyEmail }) {
     return (
-        <PanelLayout
-            // auth={auth}
-            // header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Profile</h2>}
-        >
+        <PanelLayout>
             <Head title="Profile" />
             <div className="flex gap-4 items-center mb-8">
             <svg

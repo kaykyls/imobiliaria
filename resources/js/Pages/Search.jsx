@@ -94,7 +94,7 @@ const Search = ({properties, search}) => {
           </div>
         </div>
 
-        <div className=" flex flex-col gap-4 md:gap-6 md:grid md:grid-cols-3 lg:grid-cols-4">
+        <div className="flex flex-col gap-4 md:gap-6 md:grid md:grid-cols-3 lg:grid-cols-4 mb-8">
                     
               {properties && properties.length > 0 ? (
                   properties.map((property, index) => ( 
