@@ -5,13 +5,9 @@ import { router, useForm } from '@inertiajs/react'
 const EditProperty = ({property}) => {
     let {title, address, price, id, description, category, isForRent, status, bedrooms, bathrooms, images} = property
 
-    console.log(category, status, isForRent)
-
     category = category === 0 ? 'Apartamento' : 'Casa'
     status = status === 0 ? 'Inativo' : 'Ativo'
     isForRent = isForRent === 0 ? 'Venda' : 'Aluguel'
-
-    console.log(category, status, isForRent)
 
     const { data, setData } = useForm({
         title: title,
@@ -32,8 +28,6 @@ const EditProperty = ({property}) => {
         newImages: [],
         removedImages: []
       })
-
-      console.log(data)
     
       const handleInputChange = (e) => {
         const { name, value } = e.target;

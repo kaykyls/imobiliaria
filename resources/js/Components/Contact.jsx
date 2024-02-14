@@ -6,7 +6,7 @@ const Contact = () => {
         name: '',
         email: '',
         phone: '',
-        message: ''
+        userMessage: ''
     })
 
     const handleSubmit = (e) => {
@@ -17,7 +17,7 @@ const Contact = () => {
                 setData('name', '')
                 setData('email', '')
                 setData('phone', '')
-                setData('message', '')
+                setData('userMessage', '')
             }
         })
     }
@@ -25,10 +25,7 @@ const Contact = () => {
     const handleChange = (e) => {
         setData(e.target.name, e.target.value)
     }
-
-    console.log(data)
-
-
+    
   return (
     <>
         <div id="contact" className="flex flex-col md:flex-row container mx-auto gap-20 my-20  ">
@@ -43,8 +40,8 @@ const Contact = () => {
                     <input name='phone' value={data.phone} onChange={(e) => handleChange(e)} className="border-gray-300 mb-4" type="tel" required/>
                     <label>Mensagem</label>
                     <textarea 
-                        name='message'
-                        value={data.message}
+                        name='userMessage'
+                        value={data.userMessage}
                         onChange={(e) => handleChange(e)}
                         className="border-gray-300 mb-4" 
                         placeholder="Digite uma mensagem?"

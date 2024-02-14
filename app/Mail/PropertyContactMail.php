@@ -8,16 +8,15 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Mail\Mailables\Address;
 
-class ContactMail extends Mailable
+class PropertyContactMail extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-    public function __construct(public string $name, public string $email, public string $phone, public string $userMessage)
+    public function __construct(public string $name, public string $email, public string $phone, public string $userMessage, public int $propertyId)
     {
         //
     }
@@ -28,8 +27,7 @@ class ContactMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            // from: new Address($this->email, $this->name),
-            subject: 'Contact Mail'
+            subject: 'Property Contact Mail',
         );
     }
 
@@ -39,7 +37,7 @@ class ContactMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.contact',
+            view: 'emails.propertyContact',
         );
     }
 

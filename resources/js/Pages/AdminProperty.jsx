@@ -5,8 +5,6 @@ import { Link } from '@inertiajs/react'
 const AdminProperty = ({property}) => {
   const {title, address, price, id, description, category, isForRent, status, bedrooms, bathrooms, images} = property
   
-  console.log(property)
-
   return (
     <PanelLayout>
       <div className='flex justify-between mb-8'>

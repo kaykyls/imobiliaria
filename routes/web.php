@@ -19,7 +19,8 @@ Route::get('/search', [ManagePropertyController::class, 'search'])->name('search
 
 Route::get('/property', [PropertyController::class, 'index'])->name('property.index');
 
-Route::post('/contact', ContactController::class)->name('contact');
+Route::post('/contact', [ContactController::class, 'index'])->name('contact');
+Route::post('/property-contact', [ContactController::class, 'propertyContact'])->name('propertyContact');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/manage', [DashboardController::class, 'index'])->name('dashboard');
@@ -27,7 +28,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('manage/admins/register', [RegisteredUserController::class, 'create']);
     Route::get('/manage/admins/{admin}', [AdminController::class, 'show'])->name('admins.show');
     Route::delete('/manage/admins/{admin}', [AdminController::class, 'destroy'])->name('admins.destroy');
-
 
     Route::get('/manage/properties/register', [ManagePropertyController::class, 'register'])->name('manageProperty.register');
     Route::post('/manage/properties', [ManagePropertyController::class, 'store'])->name('manageProperty.store');

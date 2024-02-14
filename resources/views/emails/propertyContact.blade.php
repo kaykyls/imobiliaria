@@ -2,3 +2,4 @@
 <p>Email: {{ $email }}</p>
 <p>Phone: {{ $phone }}</p>
 <p>Message: {{ $userMessage }}</p>
+<p>PropertyId: {{ $propertyId }}</p>

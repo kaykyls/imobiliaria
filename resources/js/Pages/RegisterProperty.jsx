@@ -43,8 +43,6 @@ const RegisterProperty = () => {
     post(route('manageProperty.store'), data);
   }
 
-  console.log(data.category, data.isForRent, data.status)
-
   return (
     <PanelLayout>
       <div className="flex gap-4 items-center mb-8">
