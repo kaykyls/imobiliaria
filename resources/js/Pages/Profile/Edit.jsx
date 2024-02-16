@@ -39,7 +39,7 @@ export default function Edit({ user, mustVerifyEmail }) {
 
             <div>
                 <div className="max-w-7xl mx-auto space-y-6">
-                    <div className="bg-white sm:rounded-lg">
+                    <div className="sm:rounded-lg">
                         <UpdateProfileInformationForm
                             mustVerifyEmail={mustVerifyEmail}
                             user={user}
@@ -47,13 +47,13 @@ export default function Edit({ user, mustVerifyEmail }) {
                         />
                     </div>
 
-                    <div className="bg-white sm:rounded-lg">
+                    <div className="sm:rounded-lg">
                         <UpdatePasswordForm
                             user={user}
                         />
                     </div>
 
-                    <div className="bg-white sm:rounded-lg">
+                    <div className="sm:rounded-lg">
                         <DeleteUserForm
                             user={user}
                         />

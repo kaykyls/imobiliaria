@@ -83,7 +83,7 @@ export default function UpdateProfileInformation({ mustVerifyEmail, user , class
                 )}
 
                 <div className="flex items-center gap-4">
-                    <PrimaryButton disabled={processing}>Save</PrimaryButton>
+                    <PrimaryButton disabled={processing}>Salvar</PrimaryButton>
 
                     <Transition
                         show={recentlySuccessful}
@@ -91,7 +91,7 @@ export default function UpdateProfileInformation({ mustVerifyEmail, user , class
                         leaveTo="opacity-0"
                         className="transition ease-in-out"
                     >
-                        <p className="text-sm text-gray-600">Saved.</p>
+                        <p className="text-sm text-gray-600">Salvo.</p>
                     </Transition>
                 </div>
             </form>

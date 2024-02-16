@@ -35,28 +35,28 @@ const Admins = ({admins}) => {
           </form>
 
           <div className='mt-10'>
-            <div className='items-center container justify-between grid grid-cols-5 w-full p-5 bg-gray-200 rounded-md '>
-                <div className='px-8'>
+            <div className='items-center container justify-between grid grid-cols-4 md:grid-cols-5 w-full p-5 bg-gray-200 rounded-md '>
+                <div className='md:px-8 hidden md:block'>
                   {/* <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                   </svg> */}
                 </div>
-                  <p className='font-semibold px-8'>ID</p>
-                  <p className='font-semibold px-8'>Nome</p>
-                  <p className='font-semibold px-8'>Email</p>
+                  <p className='font-semibold md:px-8'>ID</p>
+                  <p className='font-semibold md:px-8'>Nome</p>
+                  <p className='font-semibold md:px-8'>Email</p>
             </div>
             <div className='max-h-[650px] overflow-auto'>
             {filteredAdmins.map((admin) => (
-                <Link href={`/manage/admins/${admin.id}`} key={admin.id} className='items-center container justify-between grid grid-cols-5 w-full p-5 rounded-md hover:bg-gray-100 cursor-pointer'>
-                    <div className='px-8'>
+                <Link href={`/manage/admins/${admin.id}`} key={admin.id} className='items-center container justify-between grid grid-cols-4 md:grid-cols-5 w-full p-5 rounded-md hover:bg-gray-100 cursor-pointer'>
+                    <div className='md:px-8 hidden md:block'>
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10 stroke-gray-300">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                       </svg>
                     </div>
-                    <p className='px-8'>{admin.id}</p>
-                    <p className='px-8'>{admin.name}</p>
-                    <p className='px-8'>{admin.email}</p>
-                    <div className='flex gap-4 px-8'>
+                    <p className='md:px-8'>{admin.id}</p>
+                    <p className='md:px-8 whitespace-nowrap overflow-hidden text-ellipsis'>{admin.name}</p>
+                    <p className='md:px-8 whitespace-nowrap overflow-hidden text-ellipsis'>{admin.email}</p>
+                    <div className='flex gap-4 md:px-8'>
                     <Link href={`/manage/admins/${admin.id}/edit`}>
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />

@@ -83,7 +83,7 @@ const Search = ({properties, search}) => {
         </form>
 
       </div>}
-      <div className="container">
+      <div className="container min-h-screen">
         <div className="flex justify-between my-8">
           <h2><span className="font-semibold">Busca por:</span> {search}</h2>
           <div onClick={() => setModal(!modal)} className="flex px-4 py-1 bg-neutral-900 text-white cursor-pointer">

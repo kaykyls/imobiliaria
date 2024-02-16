@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { router, Link } from '@inertiajs/react'
 
 const Header = () => {
+    const [showMenu, setShowMenu] = useState(false);
+
     const handleSubmit = (e) => {
         e.preventDefault()
         const search = e.target[0].value
@@ -18,7 +20,7 @@ const Header = () => {
                 <form className='hidden md:block' onSubmit={handleSubmit}>
                     <input id="search" name="search" placeholder="Pesquisar..." className="w-[300px] lg:w-[700px] h-8 rounded-md border-gray-300" type="text" />
                 </form>
-                <div className="flex items-end gap-4">
+                <div className="hidden md:flex items-end gap-4">
                     <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M2.63961 0.0695801H28.3291C29.2 0.0695801 29.9844 0.854004 29.9844 1.72481V27.4144C29.9844 28.2852 29.2 29.0696 28.3291 29.0696H2.63961C1.7688 29.0696 0.984375 28.2852 0.984375 27.4144V1.72481C0.984375 0.854004 1.7688 0.0695801 2.63961 0.0695801ZM21.5786 16.353H25.5844L25.7585 12.5214H21.5786V9.69166C21.5786 8.6035 21.796 7.99324 23.1893 7.99324H25.6275L25.7153 4.42223C25.7153 4.42223 24.6272 4.24807 23.0597 4.24807C19.2282 4.24807 17.5297 6.64314 17.5297 9.21237V12.5214H14.7V16.353H17.5297V26.9769H21.5786V16.353Z" fill="black"/>
                     </svg>
@@ -29,15 +31,24 @@ const Header = () => {
                         <path d="M27.8571 0H2.13616C0.957589 0 0 0.933109 0 2.07858V26.7513C0 27.8967 0.957589 28.8298 2.13616 28.8298H27.8571C29.0357 28.8298 30 27.8967 30 26.7513V2.07858C30 0.933109 29.0357 0 27.8571 0ZM9.06696 24.7113H4.62054V10.9528H9.07366V24.7113H9.06696ZM6.84375 9.07368C5.41741 9.07368 4.26562 7.96038 4.26562 6.59611C4.26562 5.23184 5.41741 4.11855 6.84375 4.11855C8.26339 4.11855 9.42187 5.23184 9.42187 6.59611C9.42187 7.96682 8.27009 9.07368 6.84375 9.07368ZM25.7344 24.7113H21.2879V18.0186C21.2879 16.4227 21.2545 14.3699 18.9777 14.3699C16.6607 14.3699 16.3058 16.1074 16.3058 17.9028V24.7113H11.8594V10.9528H16.125V12.8319H16.1853C16.7812 11.7507 18.2344 10.6117 20.3973 10.6117C24.8973 10.6117 25.7344 13.4625 25.7344 17.1692V24.7113Z" fill="#1E1E1E"/>
                     </svg>
                 </div>
+                <svg onClick={() => setShowMenu(!showMenu)} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 block md:hidden cursor-pointer">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
             </div>
         </div>
-        <div className="border-b border-gray-300">
-            <nav className="container mx-auto py-6">            
-                <ul className="hidden md:flex gap-4">
+            <div className="border-b border-gray-300">
+                <nav className="container mx-auto py-6">
+                <ul className={`${showMenu ? "flex flex-col absolute top-0 left-0 bg-white h-screen w-full items-center justify-center" : "hidden md:flex"} gap-4`}>
                     <li><Link className="hover:text-main-color" href="/">Home</Link></li>
                     <li><Link className="hover:text-main-color" href="/#properties">Imóveis</Link></li>
                     <li><Link className="hover:text-main-color" href="/#about">Sobre</Link></li>
                     <li><Link className="hover:text-main-color" href="/#contact">Contato</Link></li>
+                    {showMenu &&
+                        <svg onClick={() => setShowMenu(!showMenu)} className="absolute right-4 cursor-pointer top-6 z-50 w-6 h-6 stroke-black text-black" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 6L6 18" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                            <path d="M6 6L18 18" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                    }
                 </ul>
                 <form className='block md:hidden' onSubmit={handleSubmit}>
                     <input placeholder="Pesquisar..." className="w-full h-8 rounded-md border-gray-300" type="text" />

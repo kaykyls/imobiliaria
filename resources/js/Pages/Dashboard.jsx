@@ -1,4 +1,5 @@
 import PanelLayout from "@/Layouts/PanelLayout";
+import { useEffect, useState } from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 
 export default function Dashboard({active, inactive, forSale, forRent, data}) {      
@@ -21,47 +22,68 @@ export default function Dashboard({active, inactive, forSale, forRent, data}) {
     const percentageHouses = (data.find(property => property.name === 'Houses').value / totalProperties) * 100;
     const percentageApartments = (data.find(property => property.name === 'Apartments').value / totalProperties) * 100;
 
+    const [outerRadius, setOuterRadius] = useState(60);
+
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth <= 768) {
+                setOuterRadius(60);
+            } else {
+                setOuterRadius(150);
+            }
+        };
+
+        handleResize();
+    
+        window.addEventListener('resize', handleResize);
+    
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+   
+
     return (
         <PanelLayout>
             <div className='mb-8'>
                 <span className='text-2xl'>Dashboard</span>
             </div>
-            <div className="flex gap-4">
-                <div className='bg-white w-1/4 py-10 rounded-lg flex items-center'>
+            <div className="grid grid-cols-2 md:flex gap-4">
+                <div className='bg-white md:w-1/4 py-10 rounded-lg flex items-center'>
                     <div className="ms-4 flex flex-col justify-center">
                         <h3 className='text-slate-400 text-xl mb-2'>Imóveis Ativos</h3>
                         <span className='text-slate-800  text-5xl'>{active}</span>
                     </div>
                 </div>
-                <div className='bg-white w-1/4 py-10 rounded-lg flex items-center'>
+                <div className='bg-white md:w-1/4 py-10 rounded-lg flex items-center'>
                     <div className="ms-4 flex flex-col justify-center">
                         <h3 className='text-slate-400 text-xl mb-2'>Imóveis Inativos</h3>
                         <span className='text-slate-800  text-5xl'>{inactive}</span>
                     </div>
                 </div>
-                <div className='bg-white w-1/4 py-10 rounded-lg flex items-center'>
+                <div className='bg-white md:w-1/4 py-10 rounded-lg flex items-center'>
                     <div className="ms-4 flex flex-col justify-center">
                         <h3 className='text-slate-400 text-xl mb-2'>Imóveis para venda</h3>
                         <span className='text-slate-800  text-5xl'>{forSale}</span>
                     </div>
                 </div>
-                <div className='bg-white w-1/4 py-10 rounded-lg flex items-center'>
+                <div className='bg-white md:w-1/4 py-10 rounded-lg flex items-center'>
                     <div className="ms-4 flex flex-col justify-center">
                         <h3 className='text-slate-400 text-xl mb-2'>Imóveis para aluguel</h3>
                         <span className='text-slate-800  text-5xl'>{forRent}</span>
                     </div>
                 </div>
             </div>
-            <div className="h-[550px] w-full bg-white rounded-lg mt-4 flex">
+            <div className="h-[300px] md:h-[550px] w-full bg-white rounded-lg mt-4 flex">
                 <ResponsiveContainer width="50%" height="100%">
-                    <PieChart width="100%" height={400}>
+                    <PieChart width={400} height={400}>
                         <Pie
                             data={data}
                             cx="50%"
                             cy="50%"
                             labelLine={false}
                             label={renderCustomizedLabel}
-                            outerRadius={200}
+                            outerRadius={outerRadius}
                             fill="#8884d8"
                             dataKey="value"
                         >
@@ -81,7 +103,7 @@ export default function Dashboard({active, inactive, forSale, forRent, data}) {
                             <span className="ml-4 text-xl text-slate-400">{percentageApartments.toFixed(0)}%</span>
                             <div className="flex items-center gap-4">
                                 <div className="h-3 w-3 bg-main-color"></div>
-                                <p className="text-xl text-slate-400">Apartamentos:</p>
+                                <p className="text-xl overflow-hidden text-ellipsis text-slate-400">Apartamentos:</p>
                             </div>
                             <span className="text-xl text-slate-400 ml-4">{percentageHouses.toFixed(0)}%</span>
                         </div>

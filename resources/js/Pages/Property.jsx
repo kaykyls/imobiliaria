@@ -16,13 +16,14 @@ const Property = ({property}) => {
         </a>
       );
     },
-    autoplay: true,
+    // autoplay: true,
     dots: true,
     dotsClass: "[&>li]:inline-block [&>li]:w-16 [&>li]:h-16 mx-auto [&>li]:cursor-pointer [&>li]:mr-2 text-center",
     infinite: true,
     speed: 500,
     slidesToShow: 1,
-    slidesToScroll: 1
+    slidesToScroll: 1,
+    arrows: false
   };
 
   const { data, setData, post } = useForm({
@@ -52,14 +53,14 @@ const Property = ({property}) => {
 
   return (
     <Layout>
-        <div className='container flex flex-col md:flex-row'>
+        <div className='container flex flex-col xl:flex-row'>
             <div>
               <div>
-                <div className="slide md:w-[800px] h-[470px] my-20">
+                <div className="lg:w-[800px] my-10 md:my-20">
                   <Slider {...sliderSettings}>
                     {images.map((image, index) => (
                       <div key={index}>
-                        <img className='w-full h-[470px] object-cover' src={image} alt={title}/>
+                        <img className='h-[470px] object-cover' src={image} alt={title}/>
                       </div>
                     ))}
                   </Slider>
@@ -94,7 +95,7 @@ const Property = ({property}) => {
             </div>
             
             
-            <div id="#contact" className="md:flex md:mx-10 gap-20 my-20  ">
+            <div id="#contact" className="md:flex md:mx-10 gap-20 my-10 md:my-20">
               <div>
                   
                   <button className=" mb-4 w-full border-gray-300  bg-gray-300 hover:bg-gray-400  color-white py-2 transition duration-500 cursor-pointer"  >WhatsApp</button>
