@@ -28,7 +28,7 @@ const Contact = () => {
     
   return (
     <>
-        <div className="flex flex-col md:flex-row container mx-auto gap-20 my-20  ">
+        <div id="contact" className="flex flex-col md:flex-row container mx-auto gap-20 my-20  ">
             <div>
                 <h3 className="text-2xl mb-5">Entre em contato</h3>
                 <form id='contact-form' onSubmit={handleSubmit} className="flex flex-col md:w-[400px] ">
