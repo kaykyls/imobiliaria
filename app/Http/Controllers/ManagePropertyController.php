@@ -28,7 +28,6 @@ class ManagePropertyController extends Controller
                     'id' => $property->id,
                     'title' => $property->title,
                     'price' => $property->price,
-                    'code' => $property->code,
                     'description' => $property->description,
                     'category' => $property->category,
                     'isForRent' => $property->isForRent,
@@ -58,7 +57,6 @@ class ManagePropertyController extends Controller
                     'id' => $property->id,
                     'title' => $property->title,
                     'price' => $property->price,
-                    'code' => $property->code,
                     'description' => $property->description,
                     'category' => $property->category,
                     'isForRent' => $property->isForRent,
@@ -74,10 +72,7 @@ class ManagePropertyController extends Controller
     }
 
     public function show($id) {
-        // dd($id);
         $property = Property::find($id);
-
-        // dd($property);
 
         $imagePaths = explode(',', $property->images);
         $imagePaths = array_map(function ($image) {
@@ -90,7 +85,6 @@ class ManagePropertyController extends Controller
             'id' => $property->id,
             'title' => $property->title,
             'price' => $property->price,
-            'code' => $property->code,
             'description' => $property->description,
             'category' => $property->category,
             'isForRent' => $property->isForRent,
@@ -120,7 +114,6 @@ class ManagePropertyController extends Controller
             'id' => $property->id,
             'title' => $property->title,
             'price' => $property->price,
-            'code' => $property->code,
             'description' => $property->description,
             'category' => $property->category,
             'isForRent' => $property->isForRent,
@@ -152,7 +145,6 @@ class ManagePropertyController extends Controller
             'number' => 'required|numeric',
             'complement' => 'required|string',
             'price' => 'required|numeric',
-            'code' => 'required|numeric',
             'description' => 'required|string',
             'category' => 'required|string',
             'isForRent' => 'required|string',
@@ -199,7 +191,6 @@ class ManagePropertyController extends Controller
             'title' => $request->title,
             'address_id' => $address->id,
             'price' => $request->price,
-            'code' => $request->code,
             'description' => $request->description,
             'category' => $category,
             'isForRent' => $isForRent,
@@ -227,7 +218,6 @@ class ManagePropertyController extends Controller
                 'id' => $property->id,
                 'title' => $property->title,
                 'price' => $property->price,
-                'code' => $property->code,
                 'description' => $property->description,
                 'category' => $property->category,
                 'isForRent' => $property->isForRent,
@@ -241,8 +231,6 @@ class ManagePropertyController extends Controller
     }
 
     public function update(Request $request) {
-        // dd($request->all());
-
         // $request->validate([
         //     'title' => 'required|string',
         //     'cep' => 'required|string',
@@ -251,7 +239,6 @@ class ManagePropertyController extends Controller
         //     'number' => 'required|numeric',
         //     'complement' => 'required|string',
         //     'price' => 'required|numeric',
-        //     'code' => 'required|numeric',
         //     'description' => 'required|string',
         //     'category' => 'required|string',
         //     'isForRent' => 'required|string',
@@ -261,11 +248,10 @@ class ManagePropertyController extends Controller
         //     'newImages.*' => 'file|mimes:jpeg,png,jpg'
         // ]);
 
-        $property = Property::find($request->code);
+        $property = Property::find($request->id);
 
         $property->title = $request->title;
         $property->price = $request->price;
-        $property->code = $request->code;
         $property->description = $request->description;
         $property->category = $request->category == 'Casa' ? true : false;
         $property->isForRent = $request->isForRent == 'Aluguel' ? true : false;
@@ -363,7 +349,6 @@ class ManagePropertyController extends Controller
                     'id' => $property->id,
                     'title' => $property->title,
                     'price' => $property->price,
-                    'code' => $property->code,
                     'description' => $property->description,
                     'category' => $property->category,
                     'isForRent' => $property->isForRent,

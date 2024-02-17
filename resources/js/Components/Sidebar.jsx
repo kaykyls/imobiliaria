@@ -25,7 +25,7 @@ const Sidebar = ({ showMenu, setShowMenu }) => {
     }, [setShowMenu])
 
     return (
-        <div ref={sidebarRef} className={`${showMenu ? "w-80" : "hidden"} lg:flex flex-col fixed top-0 left-0 h-screen lg:w-72 bg-white text-gray-800 m-0 justify-between border-r border-medium-gray z-50`}>
+        <div ref={sidebarRef} className={`${showMenu ? "w-80 shadow-2xl lg:shadow-none border-none" : "hidden"} lg:flex flex-col fixed top-0 left-0 h-screen lg:w-72 bg-white text-gray-800 m-0 justify-between lg:border-r z-50`}>
             <div className='flex flex-col gap-12'>
                 <div className='flex justify-between items-center'>
                     <Link href={"/"} className='flex text-2xl items-center font-medium px-10 py-4 gap-1'>

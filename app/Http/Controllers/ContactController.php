@@ -23,8 +23,6 @@ class ContactController extends Controller
     }
 
     public function propertyContact(PropertyContactRequest $request) {
-        // dd($request->all());
-
         Mail::to('dev.kayky@gmail.com')->send(new PropertyContactMail(
             $request->name,
             $request->email,

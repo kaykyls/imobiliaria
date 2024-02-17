@@ -5,8 +5,6 @@ import AdminNavbar from '@/Components/AdminNavbar'
 const PanelLayout = ({children}) => {
     const [showMenu, setShowMenu] = useState(false)
 
-    console.log(showMenu)
-
     return (
             <>
                 <Sidebar showMenu={showMenu} setShowMenu={setShowMenu}/>

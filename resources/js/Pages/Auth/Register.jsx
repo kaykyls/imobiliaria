@@ -56,7 +56,7 @@ export default function Register() {
                     strokeLinejoin="round"
                 />
                 </svg>
-                <h1 className="text-2xl">Cadastrar Imóvel</h1>
+                <h1 className="text-2xl">Cadastrar Admin</h1>
             </div>
 
 

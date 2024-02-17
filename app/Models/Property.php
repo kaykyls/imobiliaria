@@ -13,7 +13,6 @@ class Property extends Model
         'title',
         'address_id',
         'price',
-        'code',
         'description',
         'category',
         'isForRent',

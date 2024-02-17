@@ -11,7 +11,6 @@ const RegisterProperty = () => {
     number: null,
     complement: '',
     price: null,
-    code: null,
     description: '',
     images: [],
     category: 'Casa',
@@ -148,18 +147,6 @@ const RegisterProperty = () => {
             onChange={handleInputChange}
             placeholder="R$"
             required
-          />
-        </div>
-        <div className="flex">
-          <label className="w-40">Código</label>
-          <input
-            className="w-full border-gray-200 rounded-md mb-4"
-            type="number"
-            name="code"
-            value={data.code}
-            onChange={handleInputChange}
-            required
-            placeholder="Digite o código"
           />
         </div>
         <div className="flex">

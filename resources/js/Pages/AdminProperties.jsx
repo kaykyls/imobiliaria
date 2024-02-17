@@ -24,7 +24,10 @@ const AdminProperties = (props) => {
               <h2 className='text-2xl'>Imóveis</h2>
               <Link className='py-2 px-14 bg-main-color rounded-md' href="/manage/properties/register">Cadastrar</Link>
             </div>
-            <input className='mt-8 w-full rounded-md border-gray-200 border'
+            <input
+              className='mt-8 w-full rounded-md border-gray-200 border'
+              id='search'
+              name='search'
               value={searchQuery}
               onChange={handleSearchInputChange}
               type="text"
@@ -48,7 +51,7 @@ const AdminProperties = (props) => {
             <div className='max-h-[500px] md:max-h-[600px] overflow-auto'>
             {filteredProperties.map((property) => (
                 <Link href={`/manage/properties/${property.id}`} key={property.id} className='items-center container rounded-md justify-between flex flex-row w-full p-5 hover:bg-white '>
-                  <img className='w-10 h-10 md:w-14 md:h-14 rounded-md object-cover' src={property.images[0]} alt="" />
+                  <img className='w-10 h-10 md:w-14 md:h-14 rounded-md object-cover' src={property.images[0]} alt={property.title} />
                   <p className='w-[60px] ml-2 md:m-0'>{property.id}</p>
                   <p className='w-[100px] md:w-[150px] whitespace-nowrap overflow-hidden text-ellipsis'>{property.title}</p>
                   <p className='w-[80px] whitespace-nowrap overflow-hidden text-ellipsis'>R${property.price}</p>

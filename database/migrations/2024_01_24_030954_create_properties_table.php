@@ -21,7 +21,6 @@ return new class extends Migration
             $table->integer('bedrooms');
             $table->integer('bathrooms');
             $table->boolean('category');
-            $table->integer('code');
             $table->unsignedBigInteger('address_id');
             $table->longText('images');
             $table->timestamps();

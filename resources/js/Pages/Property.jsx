@@ -107,20 +107,21 @@ const Property = ({property}) => {
                   </div>
                   
                   <form onSubmit={handleSubmit} className="flex flex-col md:w-[400px] ">
-                      <label>Nome:</label>
-                      <input name='name' value={data.name} onChange={(e) => handleChange(e)} className="border-gray-300 mb-4" type="text" required/>
-                      <label>Email:</label>
-                      <input name='email' value={data.email} onChange={(e) => handleChange(e)} className="border-gray-300 mb-4" type="email" required/>
+                      <label htmlFor='name'>Nome:</label>
+                      <input autoComplete='on' placeholder='Digite seu nome' id='name' name='name' value={data.name} onChange={(e) => handleChange(e)} className="border-gray-300 mb-4" type="text" required/>
+                      <label htmlFor='email'>Email:</label>
+                      <input autoComplete='on' placeholder='Digite seu email' id='email' name='email' value={data.email} onChange={(e) => handleChange(e)} className="border-gray-300 mb-4" type="email" required/>
                       
-                      <label>Telefone:</label>
-                      <input name='phone' value={data.phone} onChange={(e) => handleChange(e)} className="border-gray-300 mb-4" type="tel" required/>
-                      <label>Mensagem</label>
+                      <label htmlFor='phone'>Telefone:</label>
+                      <input autoComplete='on' placeholder='Digite seu telefone' id='phone' name='phone' value={data.phone} onChange={(e) => handleChange(e)} className="border-gray-300 mb-4" type="tel" required/>
+                      <label htmlFor='userMessage'>Mensagem</label>
                       <textarea 
+                          id='userMessage'
                           name='userMessage'
                           value={data.userMessage}
                           onChange={(e) => handleChange(e)}
                           className="border-gray-300 mb-4" 
-                          placeholder="Digite uma mensagem?"
+                          placeholder="Digite uma mensagem"
                           required
                           >
                       </textarea>

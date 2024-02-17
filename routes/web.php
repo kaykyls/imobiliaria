@@ -26,6 +26,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/manage', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/manage/admins', [AdminController::class, 'index'])->name('admins');
     Route::get('manage/admins/register', [RegisteredUserController::class, 'create']);
+    Route::post('register', [RegisteredUserController::class, 'store'])->name('register.store');
     Route::get('/manage/admins/{admin}', [AdminController::class, 'show'])->name('admins.show');
     Route::delete('/manage/admins/{admin}', [AdminController::class, 'destroy'])->name('admins.destroy');
 
