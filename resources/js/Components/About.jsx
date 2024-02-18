@@ -8,10 +8,10 @@ export default function About() {
         <span className="w-10 block h-1 bg-main-color"></span>
         <div className="mx-auto mt-8 flex flex-col md:flex-row gap-20">
             <div className="md:w-1/2 flex flex-col gap-6 justify-center">
-                <h3 className='text-3xl font-medium leading-normal'>
+                <h3 className='text-2xl md:text-3xl font-medium leading-normal'>
                     Transformamos sonhos em lares, oferecendo excelência e confiança em cada negócio imobiliário.
                 </h3>
-                <p className="text-justify text-opacity-70 leading-8 mb-4">
+                <p className="text-opacity-70 leading-8 mb-4">
                     Somos uma equipe de profissionais apaixonados pelo mercado imobiliário, comprometidos em oferecer as melhores soluções para nossos clientes. Com anos de experiência no ramo, construímos uma reputação sólida baseada em confiança, integridade e excelência no atendimento.
                 </p>
                 <div>
