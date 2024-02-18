@@ -40,7 +40,7 @@ const AdminProperty = ({property}) => {
           </div>
           <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <dt class="font-semibold leading-6 text-gray-900">Preço</dt>
-            <dd class="mt-1 leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{price}</dd>
+            <dd class="mt-1 leading-6 text-gray-700 sm:col-span-2 sm:mt-0">R${price}</dd>
           </div>
           
 

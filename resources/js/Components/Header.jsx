@@ -20,6 +20,9 @@ const Header = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        if(e.target[0].value === '') return
+
         const search = e.target[0].value;
         router.get(`/search?q=${search}`);
     };
