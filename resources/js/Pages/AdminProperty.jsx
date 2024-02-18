@@ -21,8 +21,8 @@ const AdminProperty = ({property}) => {
       </Link>
       </div>
       <div class="px-4 sm:px-0">
-        <h3 class="text-base font-semibold leading-7 text-gray-900">Título do Anúncio do Imovel</h3>
-        <p class="mt-1 max-w-2xl leading-6 text-gray-500">{title}</p>
+        <h3 class="text-lg font-semibold leading-7 text-gray-900">Informações do Imóvel</h3>
+        <p class="mt-1 max-w-2xl leading-6 text-gray-500">Informações como título, descrição, etc.</p>
       </div>
       <div class="mt-6 border-t border-gray-100">
         <dl class="divide-y divide-gray-100">
@@ -31,17 +31,52 @@ const AdminProperty = ({property}) => {
             <dd class="mt-1 leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{id}</dd>
           </div>
           <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-            <dt class="font-semibold leading-6 text-gray-900">Logradouro</dt>
-            <dd class="mt-1 leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{address.street}</dd>
-          </div>
-          <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-            <dt class="font-semibold leading-6 text-gray-900">Preço</dt>
-            <dd class="mt-1 leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{price}</dd>
+            <dt class="font-semibold leading-6 text-gray-900">Título</dt>
+            <dd class="mt-1 leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{title}</dd>
           </div>
           <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <dt class="font-semibold leading-6 text-gray-900">Descrição</dt>
             <dd class="mt-1 leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{description}</dd>
           </div>
+          <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt class="font-semibold leading-6 text-gray-900">Preço</dt>
+            <dd class="mt-1 leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{price}</dd>
+          </div>
+          
+
+          <div class="px-4 sm:px-0 my-10">
+            <h3 class="text-lg font-semibold leading-7 text-gray-900">Informações do Endereço</h3>
+            <p class="mt-1 max-w-2xl leading-6 text-gray-500">Informações como Logradouro, CEP, etc.</p>
+          </div>
+
+          <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt class="font-semibold leading-6 text-gray-900">Logradouro</dt>
+            <dd class="mt-1 leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{address.street}</dd>
+          </div>
+          <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt class="font-semibold leading-6 text-gray-900">CEP</dt>
+            <dd class="mt-1 leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{address.cep}</dd>
+          </div>
+          <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt class="font-semibold leading-6 text-gray-900">Bairro</dt>
+            <dd class="mt-1 leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{address.district}</dd>
+          </div>
+          <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt class="font-semibold leading-6 text-gray-900">Número</dt>
+            <dd class="mt-1 leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{address.number}</dd>
+          </div>
+          {address.complement && (
+            <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+              <dt class="font-semibold leading-6 text-gray-900">Complemento</dt>
+              <dd class="mt-1 leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{address.complement}</dd>
+            </div>
+          )}
+
+          <div class="px-4 sm:px-0 my-10">
+            <h3 class="text-lg font-semibold leading-7 text-gray-900">Detalhes do Imóvel</h3>
+            <p class="mt-1 max-w-2xl leading-6 text-gray-500">Informações como cômodos, imagens, etc.</p>
+          </div>
+          
           <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <dt class="font-semibold leading-6 text-gray-900">Categoria</dt>
             <dd class="mt-1 leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{category ? "Casa" : "Apartamento"}</dd>

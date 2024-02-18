@@ -1,24 +1,53 @@
 import PanelLayout from '@/Layouts/PanelLayout';
-import React from 'react';
-import { useForm } from '@inertiajs/react'
+import { useState } from 'react';
+import { useForm, Link } from '@inertiajs/react';
 
 const RegisterProperty = () => {
   const { data, setData, post } = useForm({
     title: '',
     cep: '',
     district: '',
-    street: null,
-    number: null,
+    street: '',
+    number: '',
     complement: '',
-    price: null,
+    price: '',
     description: '',
     images: [],
     category: 'Casa',
     isForRent: 'Venda',
     status: 'Ativo',
-    bedrooms: null,
-    bathrooms: null,
-  })
+    bedrooms: '',
+    bathrooms: '',
+  });
+
+  
+  const [dragging, setDragging] = useState(false);
+  
+  console.log(data)
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    setDragging(true);
+  };
+
+  const handleDragEnter = (e) => {
+    e.preventDefault();
+    setDragging(true);
+  };
+
+  const handleDragLeave = () => {
+    setDragging(false);
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    setDragging(false);
+    const files = Array.from(e.dataTransfer.files);
+    setData((prevData) => ({
+      ...prevData,
+      images: files,
+    }));
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -28,256 +57,388 @@ const RegisterProperty = () => {
     }));
   };
 
-  const handleFileChange = (event) => {
-    const newImages = [...data.images, ...event.target.files];
-
-    setData({
-      ...data,
-      images: newImages,
-    });
+  const handleFileChange = (e) => {
+    const files = Array.from(e.target.files);
+    setData((prevData) => ({
+      ...prevData,
+      images: [...prevData.images, ...files],
+    }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     post(route('manageProperty.store'), data);
-  }
+  };
 
   return (
     <PanelLayout>
-      <div className="flex gap-4 items-center mb-8">
-        <svg
-          onClick={() => history.back()}
-          className="cursor-pointer"
-          width="24"
-          height="25"
-          viewBox="0 0 24 25"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M19 12.5H5"
-            stroke="black"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M12 19.5L5 12.5L12 5.5"
-            stroke="black"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
+      <div className="flex gap-4 items-center mb-10">
+        <Link href="/manage/properties">
+          <svg
+            className="cursor-pointer"
+            width="24"
+            height="25"
+            viewBox="0 0 24 25"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M19 12.5H5"
+              stroke="black"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M12 19.5L5 12.5L12 5.5"
+              stroke="black"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </Link>
+            
         <h1 className="text-2xl">Cadastrar Imóvel</h1>
       </div>
       <form onSubmit={handleSubmit}>
-        <div className="flex">
-          <label className="w-40">Título</label>
-          <input
-            className="w-full border-gray-200 rounded-md mb-4"
-            type="text"
-            name="title"
-            value={data.title}
-            onChange={handleInputChange}
-            required
-            placeholder="Digite o título"
-          />
-        </div>
-        <div className="flex">
-          <label className="w-40">CEP</label>
-          <div className="flex w-full mb-4">
-            <input
-              className="w-1/4 border-gray-200 rounded-md mr-4"
-              type="text"
-              name="cep"
-              value={data.cep}
-              onChange={handleInputChange}
-              placeholder="CEP"
-              required
-            />
-            <input
-              className="w-1/4 border-gray-200 rounded-md mr-4"
-              type="text"
-              name="district"
-              value={data.district}
-              onChange={handleInputChange}
-              placeholder="Bairro"
-              required
-            />
-            <input
-              className="w-1/4 border-gray-200 rounded-md mr-4"
-              type="number"
-              name="number"
-              value={data.number}
-              onChange={handleInputChange}
-              placeholder="Número"
-              required
-            />
-            <input
-              className="w-1/4 border-gray-200 rounded-md"
-              type="text"
-              name="complement"
-              value={data.complement}
-              onChange={handleInputChange}
-              placeholder="Complemento"
-              required
-            />
+        <div className="space-y-12">
+          <div className="border-gray-900/10">
+            <h2 className="text-lg font-semibold leading-7 text-gray-900">Informações do Imóvel</h2>
+            <p className="mt-1 text-base leading-6 text-gray-600">Insira as informações do imóvel.</p>
+
+            <div className="mt-10">
+              <label htmlFor="title" className="block text-base font-medium leading-6 text-gray-900">Título</label>
+              <input
+                type="text"
+                name="title"
+                id="title"
+                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-main-color sm:text-base sm:leading-6"
+                value={data.title}
+                onChange={handleInputChange}
+                placeholder="Digite o título"
+                required
+              />
+            </div>
+
+            <div className="mt-6">
+              <label htmlFor="description" className="block text-base font-medium leading-6 text-gray-900">Descrição</label>
+              <textarea
+                id="description"
+                name="description"
+                rows="3"
+                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-main-color sm:text-base sm:leading-6"
+                value={data.description}
+                onChange={handleInputChange}
+                placeholder="Digite a descrição"
+                required
+              ></textarea>
+            </div>
+
+            <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-6">
+              <div>
+                <label htmlFor="price" className="block text-base font-medium leading-6 text-gray-900">Preço</label>
+                <input
+                  type="number"
+                  name="price"
+                  id="price"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-main-color sm:text-base sm:leading-6"
+                  value={data.price}
+                  onChange={handleInputChange}
+                  placeholder="Preço em R$"
+                  required
+                />
+              </div>
+            </div>
+
+            <h2 className="mt-10 border-t pt-10 text-lg font-semibold leading-7 text-gray-900">Informações do Endereço</h2>
+            <p className="mt-1 text-base leading-6 text-gray-600">Insira o endereço do imóvel.</p>
+            <div className="mt-10 grid grid-cols-1 sm:grid-cols-6 gap-6">
+              <div className="sm:col-span-4">
+                <label htmlFor="street" className="block text-base font-medium leading-6 text-gray-900">Logradouro</label>
+                <input
+                  type="text"
+                  name="street"
+                  id="street"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-main-color sm:text-base sm:leading-6"
+                  value={data.street}
+                  onChange={handleInputChange}
+                  placeholder="Digite a rua"
+                  required
+                />
+              </div>
+              <div className="sm:col-span-2">
+                <label htmlFor="cep" className="block text-base font-medium leading-6 text-gray-900">CEP</label>
+                <input
+                  type="text"
+                  name="cep"
+                  id="cep"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-main-color sm:text-base sm:leading-6"
+                  value={data.cep}
+                  onChange={handleInputChange}
+                  placeholder="Digite o CEP"
+                  required
+                />
+              </div>
+              <div className="sm:col-span-4">
+                <label htmlFor="district" className="block text-base font-medium leading-6 text-gray-900">Bairro</label>
+                <input
+                  type="text"
+                  name="district"
+                  id="district"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-main-color sm:text-base sm:leading-6"
+                  value={data.district}
+                  onChange={handleInputChange}
+                  placeholder="Digite o bairro"
+                  required
+                />
+              </div>
+              <div className="sm:col-span-1">
+                <label htmlFor="number" className="block text-base font-medium leading-6 text-gray-900">Número</label>
+                <input
+                  type="number"
+                  name="number"
+                  id="number"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-main-color sm:text-base sm:leading-6"
+                  value={data.number}
+                  onChange={handleInputChange}
+                  placeholder="Nº"
+                  required
+                />
+              </div>
+              <div className="sm:col-span-3">
+                <label htmlFor="complement" className="block text-base font-medium leading-6 text-gray-900">Complemento</label>
+                <input
+                  type="text"
+                  name="complement"
+                  id="complement"
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-main-color sm:text-base sm:leading-6"
+                  value={data.complement}
+                  onChange={handleInputChange}
+                  placeholder="Complemento (opcional)"
+                />
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="flex">
-          <label className="w-40">Logradouro</label>
-          <input
-            className="w-full border-gray-200 rounded-md mb-4"
-            type="text"
-            name="street"
-            value={data.street}
-            onChange={handleInputChange}
-            required
-            placeholder="Digite o logradouro"
-          />
-        </div>
-        <div className="flex">
-          <label className="w-40">Preço</label>
-          <input
-            className="w-full border-gray-200 rounded-md mb-4"
-            type="number"
-            name="price"
-            value={data.price}
-            onChange={handleInputChange}
-            placeholder="R$"
-            required
-          />
-        </div>
-        <div className="flex">
-          <label className="w-40">Descrição</label>
-          <textarea
-            className="w-full border-gray-200 rounded-md mb-4"
-            rows="4"
-            name="description"
-            value={data.description}
-            onChange={handleInputChange}
-            required
-            placeholder="Digite a descrição"
-          ></textarea>
-        </div>
-        <div className="flex">
-          <span className="w-40">Imagens</span>
-          <div className="flex gap-4">
-            <label className="w-32 h-32 mb-4 border-gray-200 rounded-md border flex flex-col gap-4 cursor-pointer items-center justify-center" htmlFor="image">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5" />
-              </svg>
-              <span>Fazer Upload</span>
-            </label>
-            <input
-              className="hidden"
-              type="file"
-              accept="image/*"
-              name="images"
-              multiple
-              id="image"
-              onChange={handleFileChange}
-            />
-            {data.images.length > 0 && (
-              <div className="flex gap-4 flex-wrap mb-4">
-              {Array.from(data.images).map((image, index) => (
-                <div onClick={() => {
-                      const newImages = [...data.images];
-                      newImages.splice(index, 1);
-                      setData({
-                        ...data,
-                        images: newImages,
-                      });
-                    }} key={index} className="relative w-32 h-32 group cursor-pointer">
-                  <img
-                    src={URL.createObjectURL(image)}
-                    alt={image.name}
-                    className="w-32 h-32 object-cover rounded-md"
-                    
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-b from-[#00000075] to-black opacity-0 group-hover:opacity-70 rounded-md transition"></div>
-                  <div className="absolute inset-0 flex flex-col items-center justify-center text-white opacity-0 group-hover:opacity-100 transition">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
-                    </svg>
-                    <span>
-                       Remover
-                    </span>
+
+          <div className="border-t border-gray-900/10 pt-10">
+            <h2 className="text-lg font-semibold leading-7 text-gray-900">Detalhes do Imóvel</h2>
+            <p className="mt-1 text-base leading-6 text-gray-600">insira os detalhes do imóvel.</p>
+            <div className="mt-10 grid grid-cols-1 gap-6">
+              <div>
+                <label htmlFor="category" className="block text-base font-medium leading-6 text-gray-900">Categoria</label>
+                <div className="mt-2">
+                  <div className="flex items-center">
+                    <input
+                      id="category_house"
+                      name="category"
+                      type="radio"
+                      value="Casa"
+                      className="form-radio h-4 w-4 text-main-color transition duration-150 ease-in-out"
+                      checked={data.category === 'Casa'}
+                      onChange={handleInputChange}
+                    />
+                    <label htmlFor="category_house" className="ml-3">
+                      <span className="block text-base leading-5 font-medium text-gray-700">Casa</span>
+                    </label>
+                  </div>
+                  <div className="mt-2 flex items-center">
+                    <input
+                      id="category_apartment"
+                      name="category"
+                      type="radio"
+                      value="Apartamento"
+                      className="form-radio h-4 w-4 text-main-color transition duration-150 ease-in-out"
+                      checked={data.category === 'Apartamento'}
+                      onChange={handleInputChange}
+                    />
+                    <label htmlFor="category_apartment" className="ml-3">
+                      <span className="block text-base leading-5 font-medium text-gray-700">Apartamento</span>
+                    </label>
                   </div>
                 </div>
-              ))}
+              </div>
+              <div>
+                <label htmlFor="isForRent" className="block text-base font-medium leading-6 text-gray-900">Venda/Aluguel</label>
+                <div className="mt-2">
+                  <div className="flex items-center">
+                    <input
+                      id="sale"
+                      name="isForRent"
+                      type="radio"
+                      value="Venda"
+                      className="form-radio h-4 w-4 text-main-color transition duration-150 ease-in-out"
+                      checked={data.isForRent === 'Venda'}
+                      onChange={handleInputChange}
+                    />
+                    <label htmlFor="sale" className="ml-3">
+                      <span className="block text-base leading-5 font-medium text-gray-700">Venda</span>
+                    </label>
+                  </div>
+                  <div className="mt-2 flex items-center">
+                    <input
+                      id="rent"
+                      name="isForRent"
+                      type="radio"
+                      value="Aluguel"
+                      className="form-radio h-4 w-4 text-main-color transition duration-150 ease-in-out"
+                      checked={data.isForRent === 'Aluguel'}
+                      onChange={handleInputChange}
+                    />
+                    <label htmlFor="rent" className="ml-3">
+                      <span className="block text-base leading-5 font-medium text-gray-700">Aluguel</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <label htmlFor="status" className="block text-base font-medium leading-6 text-gray-900">Status</label>
+                <div className="mt-2">
+                  <div className="flex items-center">
+                    <input
+                      id="active"
+                      name="status"
+                      type="radio"
+                      value="Ativo"
+                      className="form-radio h-4 w-4 text-main-color transition duration-150 ease-in-out"
+                      checked={data.status === 'Ativo'}
+                      onChange={handleInputChange}
+                    />
+                    <label htmlFor="active" className="ml-3">
+                      <span className="block text-base leading-5 font-medium text-gray-700">Ativo</span>
+                    </label>
+                  </div>
+                  <div className="mt-2 flex items-center">
+                    <input
+                      id="inactive"
+                      name="status"
+                      type="radio"
+                      value="Inativo"
+                      className="form-radio h-4 w-4 text-main-color transition duration-150 ease-in-out"
+                      checked={data.status === 'Inativo'}
+                      onChange={handleInputChange}
+                    />
+                    <label htmlFor="inactive" className="ml-3">
+                      <span className="block text-base leading-5 font-medium text-gray-700">Inativo</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
             </div>
-            )}
+            <div className="mt-6 grid gap-6">
+              <div>
+                <label htmlFor="bedrooms" className="block text-base font-medium leading-6 text-gray-900">Quartos</label>
+                <input
+                  type="number"
+                  name="bedrooms"
+                  id="bedrooms"
+                  className="block rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-main-color sm:text-base sm:leading-6"
+                  value={data.bedrooms}
+                  onChange={handleInputChange}
+                  placeholder="Número de quartos"
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="bathrooms" className="block text-base font-medium leading-6 text-gray-900">Banheiros</label>
+                <input
+                  type="number"
+                  name="bathrooms"
+                  id="bathrooms"
+                  className="block rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-main-color sm:text-base sm:leading-6"
+                  value={data.bathrooms}
+                  onChange={handleInputChange}
+                  placeholder="Número de banheiros"
+                  required
+                />
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="flex">
-          <label className="w-40">Tipo</label>
-          <select
-            className="w-full border-gray-200 rounded-md mb-4"
-            name="category"
-            value={data.category}
-            onChange={handleInputChange}
-            required
+
+          <div className="border-t border-gray-900/10 pt-10">
+          <h2 className="text-lg font-semibold leading-7 text-gray-900">Imagens do Imóvel</h2>
+          <p className="mt-1 text-base leading-6 text-gray-600">Envie as imagens do imóvel.</p>
+          <div
+            className="mt-10 grid grid-cols-1 gap-6"
+            onDragOver={handleDragOver}
+            onDragEnter={handleDragEnter}
+            onDragLeave={handleDragLeave}
+            onDrop={handleDrop}
           >
-            <option value="casa">Casa</option>
-            <option value="apartamento">Apartamento</option>
-          </select>
+            <div className="col-span-full">
+              <label htmlFor="images" className="block text-base font-medium leading-6 text-gray-900">Fotos</label>
+              <label htmlFor="images" className={`mt-2 cursor-pointer flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10 ${dragging && "border-main-color"}`}>
+                <div className="text-center">
+                  <svg className="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path fillRule="evenodd" d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z" clipRule="evenodd" />
+                  </svg>
+                  <div className="mt-4 flex text-base leading-6 text-gray-600">
+                    <span  className="relative cursor-pointer rounded-md font-semibold text-main-color hover:text-indigo-500">
+                      <span>Envie um arquivo</span>
+                      <input
+                        id="images"
+                        name="images"
+                        type="file"
+                        className="sr-only"
+                        multiple
+                        onChange={handleFileChange}
+                      />
+                    </span>
+                    <p className="pl-1">ou arraste e solte</p>
+                  </div>
+                  <p className="text-xs leading-5 text-gray-600">PNG, JPG, JPEG</p>
+                </div>
+              </label>
+            </div>
+          </div>
+          
         </div>
-        <div className="flex">
-          <label className="w-40">Venda/Aluguel</label>
-          <select
-            className="w-full border-gray-200 rounded-md mb-4"
-            name="isForRent"
-            value={data.isForRent}
-            onChange={handleInputChange}
-            required
-          >
-            <option value="venda">Venda</option>
-            <option value="aluguel">Aluguel</option>
-          </select>
+        <div className="mt-2 grid grid-cols-3 gap-4">
+          {data.images.map((image, index) => (
+            <div key={index} className="relative">
+              <img
+                src={URL.createObjectURL(image)}
+                alt={`Imagem ${index + 1}`}
+                className="object-cover w-full h-32 rounded-md"
+              />
+              <button
+                type="button"
+                className="absolute top-1 right-1 text-gray-700 bg-white rounded-full p-1.5 hover:bg-gray-200 focus:outline-none focus:ring focus:ring-gray-300"
+                onClick={() => {
+                  setData((prevData) => ({
+                    ...prevData,
+                    images: prevData.images.filter((_, i) => i !== index),
+                  }));
+                }}
+              >
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
+          ))}
         </div>
-        <div className="flex">
-          <label className="w-40">Status</label>
-          <select
-            className="w-full border-gray-200 rounded-md mb-4"
-            name="status"
-            value={data.status}
-            onChange={handleInputChange}
-            required
-          >
-            <option value="ativo">Ativo</option>
-            <option value="inativo">Inativo</option>
-          </select>
-        </div>
-        <div className="flex">
-          <label className="w-40">Quartos</label>
-          <input
-            className="w-full border-gray-200 rounded-md mb-4"
-            type="number"
-            min="0"
-            name="bedrooms"
-            value={data.bedrooms}
-            onChange={handleInputChange}
-            placeholder="Número de quartos"
-          />
-        </div>
-        <div className="flex">
-          <label className="w-40">Banheiros</label>
-          <input
-            className="w-full border-gray-200 rounded-md mb-8"
-            type="number"
-            min="0"
-            name="bathrooms"
-            value={data.bathrooms}
-            onChange={handleInputChange}
-            placeholder="Número de banheiros"
-          />
-        </div>
-        <div className="flex justify-end">
-          <button className="py-2 px-14 rounded-md bg-main-color" type="submit">
-            Registrar
-          </button>
+          <div className="mt-6 flex items-center justify-end gap-x-6">
+            <button type="button" className="text-base font-semibold leading-6 text-gray-900">Cancelar</button>
+            <button
+              type="submit"
+              className="rounded-md bg-main-color px-3 py-2 text-base font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-main-color"
+              onClick={handleSubmit}
+            >
+              Registrar
+            </button>
+          </div>
         </div>
       </form>
     </PanelLayout>

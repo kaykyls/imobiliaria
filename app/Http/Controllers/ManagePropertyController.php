@@ -143,7 +143,7 @@ class ManagePropertyController extends Controller
             'district' => 'required|string',
             'street' => 'required|string',
             'number' => 'required|numeric',
-            'complement' => 'required|string',
+            'complement' => 'nullable|string',
             'price' => 'required|numeric',
             'description' => 'required|string',
             'category' => 'required|string',
