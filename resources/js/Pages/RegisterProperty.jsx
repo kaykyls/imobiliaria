@@ -464,7 +464,7 @@ const RegisterProperty = () => {
                         onChange={handleFileChange}
                       />
                     </span>
-                    <p className="pl-1">ou arraste e solte</p>
+                    <p className="pl-1 hidden lg:block">ou arraste e solte</p>
                   </div>
                   <p className="text-xs leading-5 text-gray-600">PNG, JPG, JPEG</p>
                 </div>

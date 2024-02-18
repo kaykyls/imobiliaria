@@ -48,8 +48,8 @@ const Search = ({properties, search}) => {
               <path d="M6.57373 6.71472L18.5737 18.7147" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
-          <div className="flex gap-4 w-[900px]">
-            <div className="w-1/5">
+          <div className="flex flex-col md:flex-row gap-4 w-full lg:w-[900px]">
+            <div className="w-full md:w-1/5">
               <label className="border-b-2 border-black block mb-4 font-semibold" htmlFor="rooms">Quartos</label>
               <select name="rooms" id="rooms" className="w-full py-1" value={bedrooms} onChange={e => setBedrooms(e.target.value)}>
                 <option value="1">1</option>
@@ -59,7 +59,7 @@ const Search = ({properties, search}) => {
                 <option value="5">5</option>
               </select>
             </div>
-            <div className="w-1/5">
+            <div className="w-full md:w-1/5">
               <label className="border-b-2 border-black block mb-4 font-semibold" htmlFor="bathrooms">Banheiros</label>
               <select name="bathrooms" id="bathrooms" className="w-full py-1" value={bathrooms} onChange={e => setBathrooms(e.target.value)}>
                 <option value="1">1</option>
@@ -69,14 +69,14 @@ const Search = ({properties, search}) => {
                 <option value="5">5</option>
               </select>
             </div>
-            <div className="w-1/5">
+            <div className="w-full md:w-1/5">
               <label className="border-b-2 border-black block mb-4 font-semibold" htmlFor="isRent">Venda / Aluguel</label>
               <select onChange={handleRentChange} name="isRent" id="isRent" className="w-full py-1" value={isRent ? '2' : '1'}>
                 <option value="1">Venda</option>
                 <option value="2">Aluguel</option>
               </select>
             </div>
-            <div className="w-1/5">
+            <div className="w-full md:w-1/5">
               <label className="border-b-2 border-black block mb-4 font-semibold" htmlFor="value">Valor</label>
               <div className="flex gap-2">
                 <span>Até:</span>
@@ -104,7 +104,7 @@ const Search = ({properties, search}) => {
               </div>
               
             </div>
-            <div className="w-1/5">
+            <div className="w-full md:w-1/5">
             <label className="border-b-2 border-black block mb-4 font-semibold" htmlFor="isRent">Categoria</label>
               <select name="isRent" id="isRent" className="w-full py-1" value={category} onChange={e => setCategory(e.target.value)}>
                 <option value="casa">Casa</option>
