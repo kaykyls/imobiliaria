@@ -159,7 +159,7 @@ const Property = ({property}) => {
                           >
                       </textarea>
 
-                      <input className="border-gray-300 bg-main-color hover:bg-gray-300 color-white py-2 transition duration-500 cursor-pointer w-full " type="submit" value="Enviar"/>
+                      <input className="border-gray-300 bg-main-color hover:bg-main-color-dark transition font-semibold text-white shadow-sm py-2 duration-500 cursor-pointer w-full " type="submit" value="Enviar"/>
                   </form>
               </div>
               

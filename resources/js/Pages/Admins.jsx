@@ -23,7 +23,7 @@ const Admins = ({admins}) => {
           <form onSubmit={(e) => e.preventDefault()}>
             <div className='justify-between flex '>
               <h2 className='text-2xl'>Admins</h2>
-              <Link className='py-2 px-14 bg-main-color rounded-md' href="/manage/admins/register">Cadastrar</Link>
+              <Link className='py-2 px-14 bg-main-color hover:bg-main-color-dark font-semibold text-white shadow-sm transition rounded-md' href="/manage/admins/register">Cadastrar</Link>
             </div>
             <input
               className='mt-8 w-full rounded-md border-gray-200 border'
@@ -53,7 +53,7 @@ const Admins = ({admins}) => {
             <tbody className='max-h-[650px] overflow-auto w-full'>
               {filteredAdmins.map((admin) => (
                 <Link className='w-full' href={`/manage/admins/${admin.id}`} key={admin.id}>
-                  <tr className='items-center container justify-between grid grid-cols-4 md:grid-cols-5 w-full p-5 rounded-md hover:bg-gray-100 cursor-pointer'>
+                  <tr className='items-center container justify-between grid grid-cols-4 md:grid-cols-5 w-full p-5 rounded-md hover:bg-white cursor-pointer'>
                     <td className='md:px-8 hidden md:block'>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10 stroke-gray-300">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />

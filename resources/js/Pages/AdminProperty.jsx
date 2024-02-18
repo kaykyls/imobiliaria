@@ -16,7 +16,7 @@ const AdminProperty = ({property}) => {
           </Link>
           <span className='text-2xl'>Imóvel</span>
         </div>
-      <Link href={`/manage/properties/${id}/edit`} className='bg-main-color py-2 px-14 rounded-md cursor-pointer'>
+      <Link href={`/manage/properties/${id}/edit`} className='bg-main-color hover:bg-main-color-dark shadow-sm font-semibold text-white transition py-2 px-14 rounded-md cursor-pointer'>
         Editar
       </Link>
       </div>

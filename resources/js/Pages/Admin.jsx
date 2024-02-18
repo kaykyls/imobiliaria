@@ -15,7 +15,7 @@ export default function Admin({admin}){
           </Link>
           <span className='text-2xl'>Admin</span>
         </div>
-      <Link href={`/manage/admins/${id}/edit`} className='bg-main-color py-2 px-14 rounded-md cursor-pointer'>
+      <Link href={`/manage/admins/${id}/edit`} className='bg-main-color hover:bg-main-color-dark transition font-semibold text-white shadow-sm py-2 px-14 rounded-md cursor-pointer'>
         Editar
       </Link>
       </div>

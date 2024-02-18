@@ -10,7 +10,7 @@ const EditProperty = ({property}) => {
     isForRent = isForRent === 0 ? 'Venda' : 'Aluguel'
 
 
-    const { data, setData } = useForm({
+    const { data, setData, processing } = useForm({
         title: title,
         cep: address.cep,
         district: address.district,
@@ -539,10 +539,13 @@ const EditProperty = ({property}) => {
           </div>
         </div>
       </div>
-          <div className="mt-10">
+      <div className="mt-6 flex items-center justify-end gap-x-6">
+            <button type="button" className="text-base font-semibold leading-6 text-gray-900">Cancelar</button>
             <button
+              disabled={processing}
               type="submit"
-              className="block w-full py-3 border border-transparent rounded-md text-white font-medium bg-main-color hover:bg-opacity-90 focus:outline-none focus:shadow-outline-indigo focus:border-main-color transition duration-150 ease-in-out"
+              className="rounded-md bg-main-color px-3 py-2 text-base font-semibold text-white shadow-sm hover:bg-main-color-dark transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-main-color"
+              onClick={handleSubmit}
             >
               Salvar
             </button>

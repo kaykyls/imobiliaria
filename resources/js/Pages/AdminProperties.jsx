@@ -22,7 +22,7 @@ const AdminProperties = (props) => {
           <form onSubmit={(e) => e.preventDefault()}>
             <div className='justify-between flex '>
               <h2 className='text-2xl'>Imóveis</h2>
-              <Link className='py-2 px-14 bg-main-color rounded-md' href="/manage/properties/register">Cadastrar</Link>
+              <Link className='py-2 px-14 bg-main-color hover:bg-main-color-dark font-semibold shadow-sm text-white transition rounded-md' href="/manage/properties/register">Cadastrar</Link>
             </div>
             <input
               className='mt-8 w-full rounded-md border-gray-200 border'
