@@ -30,9 +30,6 @@ const EditProperty = ({property}) => {
         removedImages: []
       })
 
-      console.log(data)
-
-
       const [dragging, setDragging] = useState(false);
 
       const handleDragOver = (e) => {
@@ -136,7 +133,7 @@ const EditProperty = ({property}) => {
         if (data.street.trim() === '') {
           errors.street = 'O logradouro é obrigatório';
         }
-        if (data.number.trim() === '') {
+        if (data.number === '') {
           errors.number = 'O número é obrigatório';
         }
         if (data.price.trim() === '') {
@@ -145,23 +142,28 @@ const EditProperty = ({property}) => {
         if (data.description.trim() === '') {
           errors.description = 'A descrição é obrigatória';
         }
-        if (data.bedrooms.trim() === '') {
+        if (data.bedrooms === '') {
           errors.bedrooms = 'O número de quartos é obrigatório';
         }
-        if (data.bathrooms.trim() === '') {
+        if (data.bathrooms === '') {
           errors.bathrooms = 'O número de banheiros é obrigatório';
         }
-        if (data.images.length === 0) {
+        if (data.images.length === 0 && data.newImages.length === 0) {
           errors.images = 'Pelo menos uma imagem é obrigatória';
         }
     
         setErrors(errors);
         return Object.keys(errors).length === 0;
       };
-    
+
       const handleSubmit = (e) => {
         e.preventDefault();
+        const isValid = validateForm();
 
+        if (!isValid) {
+            return;
+        }
+        
         router.post(route('manageProperty.update', property.id), {
             _method: 'put',
             ...data

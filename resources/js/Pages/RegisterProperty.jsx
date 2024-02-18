@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useForm, Link } from '@inertiajs/react';
 
 const RegisterProperty = () => {
-  const { data, setData, post } = useForm({
+  const { data, setData, post, processing } = useForm({
     title: '',
     cep: '',
     district: '',
@@ -131,9 +131,12 @@ const RegisterProperty = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const isValid = validateForm();
-    if (isValid) {
-      post(route('manageProperty.store'), data);
+
+    if (!isValid) {
+      return;
     }
+
+    post(route('manageProperty.store'), data);
   };
 
   return (
@@ -513,6 +516,7 @@ const RegisterProperty = () => {
           <div className="mt-6 flex items-center justify-end gap-x-6">
             <button type="button" className="text-base font-semibold leading-6 text-gray-900">Cancelar</button>
             <button
+              disabled={processing}
               type="submit"
               className="rounded-md bg-main-color px-3 py-2 text-base font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-main-color"
               onClick={handleSubmit}

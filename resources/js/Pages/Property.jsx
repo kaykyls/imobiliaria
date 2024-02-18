@@ -90,7 +90,7 @@ const Property = ({property}) => {
                 )}
                 </div>
               </div>
-              <div className='my-10'>
+              <div className='mt-10 mb-10 md:mb-20'>
               <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{title}</h1>
               <h2 className="text-xl py-4">R${price}<span className='text-base'>/{isForRent ? "Aluguel" : "Venda"}</span></h2>
               <h2 className='text-xl py-4 font-bold tracking-tight text-gray-900 sm:text-xl border-t border-gray-200'>Descrição</h2>

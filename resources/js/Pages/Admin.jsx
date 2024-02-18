@@ -20,11 +20,15 @@ export default function Admin({admin}){
       </Link>
       </div>
       <div class="px-4 sm:px-0">
-        <h3 class="text-base font-semibold leading-7 text-gray-900">Nome do administrador</h3>
-        <p class="mt-1 max-w-2xl leading-6 text-gray-500">{name}</p>
+        <h3 class="text-base font-semibold leading-7 text-gray-900">Informações do administrador</h3>
+        <p class="mt-1 max-w-2xl leading-6 text-gray-500">Dados como nome e email.</p>
       </div>
       <div class="mt-6 border-t border-gray-100">
         <dl class="divide-y divide-gray-100">
+        <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt class="font-semibold leading-6 text-gray-900">Nome</dt>
+            <dd class="mt-1 leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{name}</dd>
+          </div>
           <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <dt class="font-semibold leading-6 text-gray-900">ID</dt>
             <dd class="mt-1 leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{id}</dd>

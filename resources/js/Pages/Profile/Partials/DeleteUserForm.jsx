@@ -58,12 +58,11 @@ export default function DeleteUserForm({ className }) {
             <Modal show={confirmingUserDeletion} onClose={closeModal}>
                 <form onSubmit={deleteUser} className="p-6">
                     <h2 className="text-lg font-medium text-gray-900">
-                        Are you sure you want to delete your account?
+                        Você tem certeza que deseja apagar sua conta?
                     </h2>
 
                     <p className="mt-1 text-sm text-gray-600">
-                        Once your account is deleted, all of its resources and data will be permanently deleted. Please
-                        enter your password to confirm you would like to permanently delete your account.
+                        Uma vez que sua conta for excluída, todos os seus recursos e dados serão permanentemente apagados. Por favor, insira sua senha para confirmar que você gostaria de excluir sua conta permanentemente.
                     </p>
 
                     <div className="mt-6">
@@ -78,17 +77,17 @@ export default function DeleteUserForm({ className }) {
                             onChange={(e) => setData('password', e.target.value)}
                             className="mt-1 block w-3/4"
                             isFocused
-                            placeholder="Password"
+                            placeholder="Senha"
                         />
 
                         <InputError message={errors.password} className="mt-2" />
                     </div>
 
                     <div className="mt-6 flex justify-end">
-                        <SecondaryButton onClick={closeModal}>Cancel</SecondaryButton>
+                        <SecondaryButton onClick={closeModal}>Cancelar</SecondaryButton>
 
                         <DangerButton className="ml-3" disabled={processing}>
-                            Delete Account
+                            Apagar Conta
                         </DangerButton>
                     </div>
                 </form>

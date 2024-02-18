@@ -5,7 +5,7 @@ import UpdateProfileInformationForm from './Partials/UpdateProfileInformationFor
 import { Head } from '@inertiajs/react';
 import PanelLayout from '@/Layouts/PanelLayout';
 
-export default function Edit({ user, mustVerifyEmail }) {
+export default function Edit({ user }) {
     return (
         <PanelLayout>
             <Head title="Profile" />
@@ -41,9 +41,7 @@ export default function Edit({ user, mustVerifyEmail }) {
                 <div className="max-w-7xl mx-auto space-y-6">
                     <div className="sm:rounded-lg">
                         <UpdateProfileInformationForm
-                            mustVerifyEmail={mustVerifyEmail}
                             user={user}
-                            // status={status}
                         />
                     </div>
 
