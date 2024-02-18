@@ -42,7 +42,7 @@ class ManagePropertyController extends Controller
     }
 
     public function index() {
-        $properties = Property::paginate(8);
+        $properties = Property::where('status', true)->paginate(8);
 
         return Inertia::render('Home', [
             'properties' => $properties->map(function($property) {
@@ -231,22 +231,22 @@ class ManagePropertyController extends Controller
     }
 
     public function update(Request $request) {
-        // $request->validate([
-        //     'title' => 'required|string',
-        //     'cep' => 'required|string',
-        //     'district' => 'required|string',
-        //     'street' => 'required|string',
-        //     'number' => 'required|numeric',
-        //     'complement' => 'required|string',
-        //     'price' => 'required|numeric',
-        //     'description' => 'required|string',
-        //     'category' => 'required|string',
-        //     'isForRent' => 'required|string',
-        //     'status' => 'required|string',
-        //     'bedrooms' => 'required|numeric',
-        //     'bathrooms' => 'required|numeric',
-        //     'newImages.*' => 'file|mimes:jpeg,png,jpg'
-        // ]);
+        $request->validate([
+            'title' => 'required|string',
+            'cep' => 'required|string',
+            'district' => 'required|string',
+            'street' => 'required|string',
+            'number' => 'required|numeric',
+            'complement' => 'nullable|string',
+            'price' => 'required|numeric',
+            'description' => 'required|string',
+            'category' => 'required|string',
+            'isForRent' => 'required|string',
+            'status' => 'required|string',
+            'bedrooms' => 'required|numeric',
+            'bathrooms' => 'required|numeric',
+            'newImages.*' => 'file|mimes:jpeg,png,jpg'
+        ]);
 
         $property = Property::find($request->id);
 
@@ -271,19 +271,19 @@ class ManagePropertyController extends Controller
 
         }
 
-        if($request->has('images')) {
-            $images = $request->images;
+        $images = $request->images;
 
-            $imagesPaths = [];
-            
+        $imagesPaths = [];
+
+        if($request->has('images')) {
             foreach($images as $image) {
                 $pathWithoutStorage = str_replace('/storage/', '', $image);
 
                 $imagesPaths[] = "public/" . $pathWithoutStorage;
             }
-
-            $property->images = implode(',', $imagesPaths);
         }
+
+        $property->images = implode(',', $imagesPaths);
 
         if ($request->hasFile('newImages')) {
             $manager = ImageManager::gd();
@@ -305,7 +305,11 @@ class ManagePropertyController extends Controller
                 $newImagesPaths[] = $path;
             }
 
-            $property->images .= ',' . implode(',', $newImagesPaths);
+            if($property->images == null) {
+                $property->images = implode(',', $newImagesPaths);
+            } else {
+                $property->images .= ',' . implode(',', $newImagesPaths);
+            }
         }
 
         $property->save();
@@ -330,12 +334,41 @@ class ManagePropertyController extends Controller
     }
 
     public function search(){
-        $search = request('q');
-        
+        $search = request()->query('q');
+        $bedrooms = request()->query('bedrooms');
+        $bathrooms = request()->query('bathrooms');
+        $isForRent = request()->query('isForRent') === 'true' ? true : false;
+        $priceAbove = request()->query('priceAbove');
+        $category = request()->query('category');
+    
+        $query = Property::query();
+    
         if($search){
-            $properties = Property::where([['title', 'like', '%'.$search.'%']])->get();
+            $query->where('title', 'like', '%'.$search.'%');
         }
-
+    
+        if($bedrooms){
+            $query->where('bedrooms', $bedrooms);
+        }
+    
+        if($bathrooms){
+            $query->where('bathrooms', $bathrooms);
+        }
+    
+        if($isForRent){
+            $query->where('isForRent', $isForRent);
+        }
+    
+        if($priceAbove){
+            $query->where('price', '>=', $priceAbove);
+        }
+    
+        if($category){
+            $query->where('category', $category);
+        }
+    
+        $properties = $query->get();
+    
         return Inertia::render('Search', [
             'properties' => $properties->map(function($property) {
                 $imagePaths = explode(',', $property->images);
@@ -361,5 +394,5 @@ class ManagePropertyController extends Controller
             }),
             'search' => $search
         ]);
-    }
+    }    
 }

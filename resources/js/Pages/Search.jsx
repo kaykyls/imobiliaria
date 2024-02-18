@@ -1,19 +1,46 @@
-import React, { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
+import { router } from '@inertiajs/react';
 import Layout from '@/Layouts/Layout'
 import Card from '@/Components/Card'
 
 const Search = ({properties, search}) => {
-  const [modal, setModal] = useState(false)
+  const [modal, setModal] = useState(false);
+  const modalRef = useRef(null);
+  
+  const [bedrooms, setBedrooms] = useState(1);
+  const [bathrooms, setBathrooms] = useState(1);
+  const [value, setValue] = useState(50000);
+  const [category, setCategory] = useState('casa');
+  const [isRent, setIsRent] = useState(false);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        setModal(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [modalRef]);
 
   const handleSubmit = () => {
-    setModal(!modal)
-  }
+    router.get(`/search?q=${search}` + `&bedrooms=${bedrooms}` + `&bathrooms=${bathrooms}` + `&priceAbove=${value}` + `&category=${category}` + `&isForRent=${isRent}`);
+
+    setModal(!modal);
+  };
+
+  const handleRentChange = (event) => {
+    setIsRent(event.target.value === '2'); // Se o valor selecionado for '2' (Aluguel), setIsRent para true
+  };
 
   return (
     <Layout>
 
       {modal && <div className="bg-black bg-opacity-70 flex items-center justify-center w-full h-full fixed z-50 top-0 left-0">
-        <form onSubmit={() => handleSubmit()} className="bg-white p-8 rounded-md flex flex-col">
+        <form ref={modalRef} onSubmit={() => handleSubmit()} className="bg-white p-8 rounded-md flex flex-col">
           <div className="flex justify-between mb-4">
             <span>Filtros de Pesquisa</span>
             <svg className="cursor-pointer" onClick={() => setModal(!modal)} width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -24,7 +51,7 @@ const Search = ({properties, search}) => {
           <div className="flex gap-4 w-[900px]">
             <div className="w-1/5">
               <label className="border-b-2 border-black block mb-4 font-semibold" htmlFor="rooms">Quartos</label>
-              <select name="rooms" id="rooms" className="w-full py-1">
+              <select name="rooms" id="rooms" className="w-full py-1" value={bedrooms} onChange={e => setBedrooms(e.target.value)}>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -34,7 +61,7 @@ const Search = ({properties, search}) => {
             </div>
             <div className="w-1/5">
               <label className="border-b-2 border-black block mb-4 font-semibold" htmlFor="bathrooms">Banheiros</label>
-              <select name="bathrooms" id="bathrooms" className="w-full py-1">
+              <select name="bathrooms" id="bathrooms" className="w-full py-1" value={bathrooms} onChange={e => setBathrooms(e.target.value)}>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -44,7 +71,7 @@ const Search = ({properties, search}) => {
             </div>
             <div className="w-1/5">
               <label className="border-b-2 border-black block mb-4 font-semibold" htmlFor="isRent">Venda / Aluguel</label>
-              <select name="isRent" id="isRent" className="w-full py-1">
+              <select onChange={handleRentChange} name="isRent" id="isRent" className="w-full py-1" value={isRent ? '2' : '1'}>
                 <option value="1">Venda</option>
                 <option value="2">Aluguel</option>
               </select>
@@ -53,21 +80,33 @@ const Search = ({properties, search}) => {
               <label className="border-b-2 border-black block mb-4 font-semibold" htmlFor="value">Valor</label>
               <div className="flex gap-2">
                 <span>Até:</span>
-                <select name="value" id="value" className="w-full py-1">
-                  <option value="50000">R$50.000</option>
-                  <option value="100000">R$100.000</option>
-                  <option value="200000">R$200.000</option>
-                  <option value="300000">R$300.000</option>
-                  <option value="400000">R$400.000</option>
-                  <option value="500000">R$500.000</option>
-                  <option value="1000000">R$1.000.000</option>
+                <select name="value" id="value" className="w-full py-1" value={value} onChange={e => setValue(e.target.value)}>
+                {isRent ? (
+                      <>
+                        <option value="1000">R$1.000</option>
+                        <option value="2000">R$2.000</option>
+                        <option value="3000">R$3.000</option>
+                        <option value="4000">R$4.000</option>
+                        <option value="5000">R$5.000</option>
+                      </>
+                    ) : (
+                      <>
+                        <option value="50000">R$50.000</option>
+                        <option value="100000">R$100.000</option>
+                        <option value="200000">R$200.000</option>
+                        <option value="300000">R$300.000</option>
+                        <option value="400000">R$400.000</option>
+                        <option value="500000">R$500.000</option>
+                        <option value="1000000">R$1.000.000</option>
+                      </>
+                    )}
                 </select>
               </div>
               
             </div>
             <div className="w-1/5">
-            <label className="border-b-2 border-black block mb-4 font-semibold" htmlFor="isRent">Venda / Aluguel</label>
-              <select name="isRent" id="isRent" className="w-full py-1">
+            <label className="border-b-2 border-black block mb-4 font-semibold" htmlFor="isRent">Categoria</label>
+              <select name="isRent" id="isRent" className="w-full py-1" value={category} onChange={e => setCategory(e.target.value)}>
                 <option value="casa">Casa</option>
                 <option value="apartamento">Apartamento</option>
               </select>
@@ -106,6 +145,7 @@ const Search = ({properties, search}) => {
                       value={property.price}
                       rooms={property.bedrooms}
                       bathrooms={property.bathrooms}
+                      isForRent={property.isForRent}
                     />
                   ))
               ) : (

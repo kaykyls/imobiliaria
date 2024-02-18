@@ -57,6 +57,26 @@ const RegisterProperty = () => {
     }));
   };
 
+  const formatCep = (cep) => {
+    // Remove caracteres não numéricos do CEP
+    const numericCep = cep.replace(/\D/g, '');
+    // Adiciona a formatação (XXXXX-XXX)
+    return numericCep.replace(/^(\d{5})(\d{3})/, '$1-$2');
+  };
+
+  const handleCepChange = (e) => {
+    const { value } = e.target;
+
+    // Formata o valor do CEP
+    const formattedCep = formatCep(value);
+
+    // Atualiza o estado com o CEP formatado
+    setData((prevData) => ({
+      ...prevData,
+      cep: formattedCep,
+    }));
+  };
+
   const handleFileChange = (e) => {
     const files = Array.from(e.target.files);
     setData((prevData) => ({
@@ -65,9 +85,55 @@ const RegisterProperty = () => {
     }));
   };
 
+  const [errors, setErrors] = useState({});
+
+  const validateForm = () => {
+    const errors = {};
+
+    if (data.title.trim() === '') {
+      errors.title = 'O título é obrigatório';
+    }
+    if (data.cep.trim() === '') {
+      errors.cep = 'O CEP é obrigatório';
+    }
+    if (data.cep.length < 9) {
+      errors.cep = 'O CEP deve conter 8 dígitos';
+    }
+    if (data.district.trim() === '') {
+      errors.district = 'O bairro é obrigatório';
+    }
+    if (data.street.trim() === '') {
+      errors.street = 'O logradouro é obrigatório';
+    }
+    if (data.number.trim() === '') {
+      errors.number = 'O número é obrigatório';
+    }
+    if (data.price.trim() === '') {
+      errors.price = 'O preço é obrigatório';
+    }
+    if (data.description.trim() === '') {
+      errors.description = 'A descrição é obrigatória';
+    }
+    if (data.bedrooms.trim() === '') {
+      errors.bedrooms = 'O número de quartos é obrigatório';
+    }
+    if (data.bathrooms.trim() === '') {
+      errors.bathrooms = 'O número de banheiros é obrigatório';
+    }
+    if (data.images.length === 0) {
+      errors.images = 'Pelo menos uma imagem é obrigatória';
+    }
+
+    setErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    post(route('manageProperty.store'), data);
+    const isValid = validateForm();
+    if (isValid) {
+      post(route('manageProperty.store'), data);
+    }
   };
 
   return (
@@ -108,7 +174,7 @@ const RegisterProperty = () => {
             <p className="mt-1 text-base leading-6 text-gray-600">Insira as informações do imóvel.</p>
 
             <div className="mt-10">
-              <label htmlFor="title" className="block text-base font-medium leading-6 text-gray-900">Título</label>
+              <label htmlFor="title" className="block text-base font-medium leading-6 text-gray-900">Título *</label>
               <input
                 type="text"
                 name="title"
@@ -120,9 +186,10 @@ const RegisterProperty = () => {
                 required
               />
             </div>
+            {errors.title && <p className="mt-1 text-sm text-red-500">{errors.title}</p>}
 
             <div className="mt-6">
-              <label htmlFor="description" className="block text-base font-medium leading-6 text-gray-900">Descrição</label>
+              <label htmlFor="description" className="block text-base font-medium leading-6 text-gray-900">Descrição *</label>
               <textarea
                 id="description"
                 name="description"
@@ -134,10 +201,11 @@ const RegisterProperty = () => {
                 required
               ></textarea>
             </div>
+            {errors.description && <p className="mt-1 text-sm text-red-500">{errors.description}</p>}
 
             <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-6">
               <div>
-                <label htmlFor="price" className="block text-base font-medium leading-6 text-gray-900">Preço</label>
+                <label htmlFor="price" className="block text-base font-medium leading-6 text-gray-900">Preço *</label>
                 <input
                   type="number"
                   name="price"
@@ -146,16 +214,18 @@ const RegisterProperty = () => {
                   value={data.price}
                   onChange={handleInputChange}
                   placeholder="Preço em R$"
+                  min={0}
                   required
                 />
               </div>
             </div>
+            {errors.price && <p className="mt-1 text-sm text-red-500">{errors.price}</p>}
 
             <h2 className="mt-10 border-t pt-10 text-lg font-semibold leading-7 text-gray-900">Informações do Endereço</h2>
             <p className="mt-1 text-base leading-6 text-gray-600">Insira o endereço do imóvel.</p>
             <div className="mt-10 grid grid-cols-1 sm:grid-cols-6 gap-6">
               <div className="sm:col-span-4">
-                <label htmlFor="street" className="block text-base font-medium leading-6 text-gray-900">Logradouro</label>
+                <label htmlFor="street" className="block text-base font-medium leading-6 text-gray-900">Logradouro *</label>
                 <input
                   type="text"
                   name="street"
@@ -166,22 +236,25 @@ const RegisterProperty = () => {
                   placeholder="Digite a rua"
                   required
                 />
+              {errors.street && <p className="mt-1 text-sm text-red-500">{errors.street}</p>}
               </div>
               <div className="sm:col-span-2">
-                <label htmlFor="cep" className="block text-base font-medium leading-6 text-gray-900">CEP</label>
+                <label htmlFor="cep" className="block text-base font-medium leading-6 text-gray-900">CEP *</label>
                 <input
                   type="text"
                   name="cep"
                   id="cep"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-main-color sm:text-base sm:leading-6"
                   value={data.cep}
-                  onChange={handleInputChange}
+                  onChange={handleCepChange}
+                  maxLength={9}
                   placeholder="Digite o CEP"
                   required
                 />
+                {errors.cep && <p className="mt-1 text-sm text-red-500">{errors.cep}</p>}
               </div>
               <div className="sm:col-span-4">
-                <label htmlFor="district" className="block text-base font-medium leading-6 text-gray-900">Bairro</label>
+                <label htmlFor="district" className="block text-base font-medium leading-6 text-gray-900">Bairro *</label>
                 <input
                   type="text"
                   name="district"
@@ -192,9 +265,10 @@ const RegisterProperty = () => {
                   placeholder="Digite o bairro"
                   required
                 />
+                {errors.district && <p className="mt-1 text-sm text-red-500">{errors.district}</p>}
               </div>
               <div className="sm:col-span-1">
-                <label htmlFor="number" className="block text-base font-medium leading-6 text-gray-900">Número</label>
+                <label htmlFor="number" className="block text-base font-medium leading-6 text-gray-900">Número *</label>
                 <input
                   type="number"
                   name="number"
@@ -203,11 +277,13 @@ const RegisterProperty = () => {
                   value={data.number}
                   onChange={handleInputChange}
                   placeholder="Nº"
+                  min={0}
                   required
                 />
+                {errors.number && <p className="mt-1 text-sm text-red-500">{errors.number}</p>}
               </div>
               <div className="sm:col-span-3">
-                <label htmlFor="complement" className="block text-base font-medium leading-6 text-gray-900">Complemento</label>
+                <label htmlFor="complement" className="block text-base font-medium leading-6 text-gray-900">Complemento *</label>
                 <input
                   type="text"
                   name="complement"
@@ -223,7 +299,7 @@ const RegisterProperty = () => {
 
           <div className="border-t border-gray-900/10 pt-10">
             <h2 className="text-lg font-semibold leading-7 text-gray-900">Detalhes do Imóvel</h2>
-            <p className="mt-1 text-base leading-6 text-gray-600">insira os detalhes do imóvel.</p>
+            <p className="mt-1 text-base leading-6 text-gray-600">Insira os detalhes do imóvel.</p>
             <div className="mt-10 grid grid-cols-1 gap-6">
               <div>
                 <label htmlFor="category" className="block text-base font-medium leading-6 text-gray-900">Categoria</label>
@@ -327,7 +403,7 @@ const RegisterProperty = () => {
             </div>
             <div className="mt-6 grid gap-6">
               <div>
-                <label htmlFor="bedrooms" className="block text-base font-medium leading-6 text-gray-900">Quartos</label>
+                <label htmlFor="bedrooms" className="block text-base font-medium leading-6 text-gray-900">Quartos *</label>
                 <input
                   type="number"
                   name="bedrooms"
@@ -336,11 +412,13 @@ const RegisterProperty = () => {
                   value={data.bedrooms}
                   onChange={handleInputChange}
                   placeholder="Número de quartos"
+                  min={0}
                   required
                 />
+                {errors.bedrooms && <p className="mt-1 text-sm text-red-500">{errors.bedrooms}</p>}
               </div>
               <div>
-                <label htmlFor="bathrooms" className="block text-base font-medium leading-6 text-gray-900">Banheiros</label>
+                <label htmlFor="bathrooms" className="block text-base font-medium leading-6 text-gray-900">Banheiros *</label>
                 <input
                   type="number"
                   name="bathrooms"
@@ -349,8 +427,10 @@ const RegisterProperty = () => {
                   value={data.bathrooms}
                   onChange={handleInputChange}
                   placeholder="Número de banheiros"
+                  min={0}
                   required
                 />
+                {errors.bathrooms && <p className="mt-1 text-sm text-red-500">{errors.bathrooms}</p>}
               </div>
             </div>
           </div>
@@ -366,7 +446,7 @@ const RegisterProperty = () => {
             onDrop={handleDrop}
           >
             <div className="col-span-full">
-              <label htmlFor="images" className="block text-base font-medium leading-6 text-gray-900">Fotos</label>
+              <label htmlFor="images" className="block text-base font-medium leading-6 text-gray-900">Fotos *</label>
               <label htmlFor="images" className={`mt-2 cursor-pointer flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10 ${dragging && "border-main-color"}`}>
                 <div className="text-center">
                   <svg className="mx-auto h-12 w-12 text-gray-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -389,6 +469,7 @@ const RegisterProperty = () => {
                   <p className="text-xs leading-5 text-gray-600">PNG, JPG, JPEG</p>
                 </div>
               </label>
+              {errors.images && <p className="mt-1 text-sm text-red-500">{errors.images}</p>}
             </div>
           </div>
           

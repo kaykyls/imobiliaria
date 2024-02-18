@@ -17,7 +17,7 @@ const Property = ({property}) => {
       );
     },
     // autoplay: true,
-    dots: true,
+    dots: images.length > 1,
     dotsClass: "[&>li]:inline-block [&>li]:w-16 [&>li]:h-16 mx-auto [&>li]:cursor-pointer [&>li]:mr-2 text-center",
     infinite: true,
     speed: 500,
@@ -51,19 +51,43 @@ const Property = ({property}) => {
     setData(e.target.name, e.target.value)
   }
 
+  // Função para formatar o número de telefone corretamente e limitar a quantidade de dígitos
+  const formatPhoneNumber = (value) => {
+    // Remove todos os caracteres que não são dígitos
+    const cleaned = ('' + value).replace(/\D/g, '');
+    // Limita para no máximo 11 dígitos
+    const limited = cleaned.slice(0, 11);
+    // Aplica a formatação (XX) XXXX-XXXX
+    const match = limited.match(/^(\d{0,2})(\d{0,5})(\d{0,4})$/);
+    if (match) {
+        return '(' + match[1] + ') ' + match[2] + (match[3] ? '-' + match[3] : '');
+    }
+    return value;
+  }
+
+  const handlePhoneChange = (e) => {
+      // Formata o número antes de definir no estado
+      const formattedPhone = formatPhoneNumber(e.target.value);
+      setData('phone', formattedPhone);
+  }
+
   return (
     <Layout>
         <div className='container flex flex-col xl:flex-row'>
             <div>
               <div>
                 <div className="lg:w-[800px] my-10 md:my-20">
+                {images.length === 1 ? (
+                  <img className='h-[470px] w-full object-cover' src={images[0]} alt={title} />
+                ) : (
                   <Slider {...sliderSettings}>
                     {images.map((image, index) => (
                       <div key={index}>
-                        <img className='h-[470px] object-cover' src={image} alt={title}/>
+                        <img className='h-[470px] w-full object-cover' src={image} alt={title} />
                       </div>
                     ))}
                   </Slider>
+                )}
                 </div>
               </div>
               <div className='my-10'>
@@ -113,7 +137,7 @@ const Property = ({property}) => {
                       <input autoComplete='on' placeholder='Digite seu email' id='email' name='email' value={data.email} onChange={(e) => handleChange(e)} className="border-gray-300 mb-4" type="email" required/>
                       
                       <label htmlFor='phone'>Telefone:</label>
-                      <input autoComplete='on' placeholder='Digite seu telefone' id='phone' name='phone' value={data.phone} onChange={(e) => handleChange(e)} className="border-gray-300 mb-4" type="tel" required/>
+                      <input autoComplete='on' placeholder='Digite seu telefone' name='phone' id='phone' value={data.phone} onChange={(e) => handlePhoneChange(e)} className="border-gray-300 mb-4" type="tel" maxLength="15" required/>
                       <label htmlFor='userMessage'>Mensagem</label>
                       <textarea 
                           id='userMessage'
