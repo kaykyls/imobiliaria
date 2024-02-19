@@ -342,8 +342,6 @@ class ManagePropertyController extends Controller
         $category = request()->query('category');
     
         $query = Property::query();
-
-        // dd($search, $bedrooms, $bathrooms, $isForRent, $priceBelow, $category);
     
         if($search){
             $query->where('title', 'like', '%'.$search.'%');

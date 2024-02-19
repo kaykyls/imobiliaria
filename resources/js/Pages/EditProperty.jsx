@@ -67,11 +67,9 @@ const EditProperty = ({property}) => {
 
       const handleCepChange = (e) => {
         const { value } = e.target;
-    
-        // Formata o valor do CEP
+
         const formattedCep = formatCep(value);
-    
-        // Atualiza o estado com o CEP formatado
+
         setData((prevData) => ({
           ...prevData,
           cep: formattedCep,

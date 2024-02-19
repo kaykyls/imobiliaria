@@ -26,13 +26,12 @@ const Contact = () => {
         setData(e.target.name, e.target.value)
     }
 
-    // Função para formatar o número de telefone corretamente e limitar a quantidade de dígitos
     const formatPhoneNumber = (value) => {
-        // Remove todos os caracteres que não são dígitos
+
         const cleaned = ('' + value).replace(/\D/g, '');
-        // Limita para no máximo 11 dígitos
+
         const limited = cleaned.slice(0, 11);
-        // Aplica a formatação (XX) XXXX-XXXX
+
         const match = limited.match(/^(\d{0,2})(\d{0,5})(\d{0,4})$/);
         if (match) {
             return '(' + match[1] + ') ' + match[2] + (match[3] ? '-' + match[3] : '');
@@ -41,7 +40,6 @@ const Contact = () => {
     }
 
     const handlePhoneChange = (e) => {
-        // Formata o número antes de definir no estado
         const formattedPhone = formatPhoneNumber(e.target.value);
         setData('phone', formattedPhone);
     }
@@ -74,13 +72,14 @@ const Contact = () => {
                     </form>
                 </div>
                 <div>
-                    <h3 className="text-2xl mb-5" >Endereço</h3>
+                    <h3 className="text-2xl mb-5">Endereço</h3>
                     <div className="flex flex-col gap-2">
-                        <p className=" font-semibold">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        <a href="tel:+15551234567">(00)0 0000-0000</a>
-                        <p></p>
-                    </div>     
+                        <p className="font-semibold">Lyks Imóveis</p>
+                        <p>Rua das Casas Encantadas, 123</p>
+                        <p>Bairro dos Sonhos</p>
+                        <p>São Paulo, SP</p>
+                        <a href="tel:+15551234567">(99)9 8765-4321</a>
+                    </div>
                 </div>
             </div>
         </>

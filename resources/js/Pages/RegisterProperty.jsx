@@ -56,19 +56,16 @@ const RegisterProperty = () => {
   };
 
   const formatCep = (cep) => {
-    // Remove caracteres não numéricos do CEP
     const numericCep = cep.replace(/\D/g, '');
-    // Adiciona a formatação (XXXXX-XXX)
+
     return numericCep.replace(/^(\d{5})(\d{3})/, '$1-$2');
   };
 
   const handleCepChange = (e) => {
     const { value } = e.target;
 
-    // Formata o valor do CEP
     const formattedCep = formatCep(value);
 
-    // Atualiza o estado com o CEP formatado
     setData((prevData) => ({
       ...prevData,
       cep: formattedCep,

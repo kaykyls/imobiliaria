@@ -55,7 +55,6 @@ const AdminProperties = (props) => {
                   <p className='w-[60px] ml-2 md:m-0'>{property.id}</p>
                   <p className='w-[100px] md:w-[150px] whitespace-nowrap overflow-hidden text-ellipsis'>{property.title}</p>
                   <p className='w-[80px] whitespace-nowrap overflow-hidden text-ellipsis'>R${property.price}</p>
-                  {/* <div className='w-[60px] flex justify-center'>{property.status ? <div className="bg-green-500 w-2 h-2 rounded-full"></div> : <div className="bg-red-500 w-2 h-2 rounded-full"></div>}</div> */}
                   <p className='w-[60px] hidden md:block whitespace-nowrap overflow-hidden text-ellipsis'>{property.status ? "Ativo" : "Inativo"}</p>
                   <p className='w-[60px] hidden md:block whitespace-nowrap overflow-hidden text-ellipsis'>{property.category ? "Casa" : "Apartamento"}</p>
                   <div className='flex gap-4'>

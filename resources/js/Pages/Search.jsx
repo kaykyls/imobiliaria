@@ -26,7 +26,6 @@ const Search = ({properties, search}) => {
     };
   }, [modalRef]);
 
-  // Busca os possíveis valores dos parâmetros da URL e define como valor inicial
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const bedroomsParam = urlParams.get('bedrooms');

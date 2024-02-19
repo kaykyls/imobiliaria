@@ -18,7 +18,6 @@ const Property = ({property}) => {
         </a>
       );
     },
-    // autoplay: true,
     dots: images.length > 1,
     dotsClass: "[&>li]:inline-block [&>li]:w-16 [&>li]:h-16 mx-auto [&>li]:cursor-pointer [&>li]:mr-2 text-center",
     infinite: true,
@@ -53,13 +52,11 @@ const Property = ({property}) => {
     setData(e.target.name, e.target.value)
   }
 
-  // Função para formatar o número de telefone corretamente e limitar a quantidade de dígitos
   const formatPhoneNumber = (value) => {
-    // Remove todos os caracteres que não são dígitos
     const cleaned = ('' + value).replace(/\D/g, '');
-    // Limita para no máximo 11 dígitos
+
     const limited = cleaned.slice(0, 11);
-    // Aplica a formatação (XX) XXXX-XXXX
+
     const match = limited.match(/^(\d{0,2})(\d{0,5})(\d{0,4})$/);
     if (match) {
         return '(' + match[1] + ') ' + match[2] + (match[3] ? '-' + match[3] : '');
@@ -68,7 +65,6 @@ const Property = ({property}) => {
   }
 
   const handlePhoneChange = (e) => {
-      // Formata o número antes de definir no estado
       const formattedPhone = formatPhoneNumber(e.target.value);
       setData('phone', formattedPhone);
   }
