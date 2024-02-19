@@ -22,8 +22,6 @@ const RegisterProperty = () => {
 
   
   const [dragging, setDragging] = useState(false);
-  
-  console.log(data)
 
   const handleDragOver = (e) => {
     e.preventDefault();
@@ -514,7 +512,7 @@ const RegisterProperty = () => {
           ))}
         </div>
           <div className="mt-6 flex items-center justify-end gap-x-6">
-            <button type="button" className="text-base font-semibold leading-6 text-gray-900">Cancelar</button>
+            <Link href='/manage/properties' className="text-base font-semibold leading-6 text-gray-900">Cancelar</Link>
             <button
               disabled={processing}
               type="submit"

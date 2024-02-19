@@ -2,9 +2,11 @@ import React from 'react'
 import { Link } from '@inertiajs/react'
 
 const Card = ({img, title, value, rooms, bathrooms, href, isForRent}) => {
+  const formattedPrice = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
+
   return (
     <Link href={href} className="w-[100%] relative border border-gray-300 cursor-pointer rounded-xl overflow-hidden">
-        <span className="absolute top-4 left-4 px-6 py-1 bg-main-color text-text-color z-40 text-sm rounded-lg">{isForRent ? "Aluguel" : "Venda"}</span>
+        <span className="absolute top-4 left-4 px-6 py-1 bg-main-color font-semibold text-white z-40 text-sm rounded-lg">{isForRent ? "Aluguel" : "Venda"}</span>
         <div className="relative group overflow-hidden">
         <img
           className="h-[250px] object-cover w-full group-hover:scale-110 transition"
@@ -15,7 +17,7 @@ const Card = ({img, title, value, rooms, bathrooms, href, isForRent}) => {
       </div>
         <div className="flex flex-col px-4 py-6">
             <h3 className="text-xl font-medium text-ellipsis overflow-hidden">{title}</h3>
-            <p className="text-base ">R${value}</p>
+            <p className="text-base ">{formattedPrice}</p>
             <div className='my-4 bg-gray-300 h-[1px] w-full'></div>
             <div className="flex gap-2 flex-wrap">
                 <div className="flex gap-2 items-center border rounded-full px-4 py-1">

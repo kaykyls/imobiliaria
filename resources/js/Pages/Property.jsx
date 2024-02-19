@@ -8,6 +8,8 @@ import { useForm } from '@inertiajs/react'
 const Property = ({property}) => {
   const {title, address, price, id, description, category, isForRent, bedrooms, bathrooms, images} = property
 
+  const formattedPrice = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(price);
+
   const sliderSettings = {
     customPaging: function(i) {
       return (
@@ -78,7 +80,7 @@ const Property = ({property}) => {
               <div className='w-full'>
                 <div className="my-10 md:my-20 lg:max-w-[900px]">
                 {images.length === 1 ? (
-                  <img className='h-[470px] w-full object-cover' src={images[0]} alt={title} />
+                  <img className='md:h-[490px] w-full object-cover' src={images[0]} alt={title} />
                 ) : (
                   <Slider {...sliderSettings}>
                     {images.map((image, index) => (
@@ -92,7 +94,7 @@ const Property = ({property}) => {
               </div>
               <div className='mt-10 mb-10 md:mb-20'>
               <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{title}</h1>
-              <h2 className="text-xl py-4">R${price}<span className='text-base'>/{isForRent ? "Aluguel" : "Venda"}</span></h2>
+              <h2 className="text-xl py-4">{formattedPrice}<span className='text-base'>/{isForRent ? "Aluguel" : "Venda"}</span></h2>
               <h2 className='text-xl py-4 font-bold tracking-tight text-gray-900 sm:text-xl border-t border-gray-200'>Descrição</h2>
               <p className='leading-loose mb-4 text-gray-600'>{description}</p>
               <h2 className='text-xl py-4 font-bold tracking-tight text-gray-900 sm:text-xl border-t border-gray-200'>Endereço</h2>

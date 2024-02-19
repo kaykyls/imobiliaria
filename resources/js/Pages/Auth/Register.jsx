@@ -56,8 +56,6 @@ export default function Register() {
         }
     };
 
-    console.log(errors);
-
     return (
         <PanelLayout>
             <Head title="Register" />

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import PanelLayout from '@/Layouts/PanelLayout'
-import { router, useForm } from '@inertiajs/react'
+import { router, useForm, Link } from '@inertiajs/react'
 
 const EditProperty = ({property}) => {
     let {title, address, price, id, description, category, isForRent, status, bedrooms, bathrooms, images} = property
@@ -540,7 +540,7 @@ const EditProperty = ({property}) => {
         </div>
       </div>
       <div className="mt-6 flex items-center justify-end gap-x-6">
-            <button type="button" className="text-base font-semibold leading-6 text-gray-900">Cancelar</button>
+            <Link href='/manage/properties' className="text-base font-semibold leading-6 text-gray-900">Cancelar</Link>
             <button
               disabled={processing}
               type="submit"

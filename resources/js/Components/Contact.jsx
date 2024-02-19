@@ -78,7 +78,6 @@ const Contact = () => {
                     <div className="flex flex-col gap-2">
                         <p className=" font-semibold">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        {/* <button className="border-gray-300 mb-4 bg-main-color py-2 transition duration-500 cursor-pointer" >Veja como chegar!</button> */}
                         <a href="tel:+15551234567">(00)0 0000-0000</a>
                         <p></p>
                     </div>     

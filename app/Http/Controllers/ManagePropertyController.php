@@ -337,11 +337,13 @@ class ManagePropertyController extends Controller
         $search = request()->query('q');
         $bedrooms = request()->query('bedrooms');
         $bathrooms = request()->query('bathrooms');
-        $isForRent = request()->query('isForRent') === 'true' ? true : false;
-        $priceAbove = request()->query('priceAbove');
+        $isForRent = request()->query('isForRent');
+        $priceBelow = request()->query('priceBelow');
         $category = request()->query('category');
     
         $query = Property::query();
+
+        // dd($search, $bedrooms, $bathrooms, $isForRent, $priceBelow, $category);
     
         if($search){
             $query->where('title', 'like', '%'.$search.'%');
@@ -356,14 +358,16 @@ class ManagePropertyController extends Controller
         }
     
         if($isForRent){
+            $isForRent = $isForRent == 'true' ? true : false;
             $query->where('isForRent', $isForRent);
         }
     
-        if($priceAbove){
-            $query->where('price', '>=', $priceAbove);
+        if($priceBelow){
+            $query->where('price', '<=', $priceBelow);
         }
     
         if($category){
+            $category = $category == 'casa' ? true : false;
             $query->where('category', $category);
         }
     
@@ -394,5 +398,6 @@ class ManagePropertyController extends Controller
             }),
             'search' => $search
         ]);
-    }    
+    }
+    
 }
