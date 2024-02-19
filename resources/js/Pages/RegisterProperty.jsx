@@ -281,7 +281,7 @@ const RegisterProperty = () => {
                 {errors.number && <p className="mt-1 text-sm text-red-500">{errors.number}</p>}
               </div>
               <div className="sm:col-span-3">
-                <label htmlFor="complement" className="block text-base font-medium leading-6 text-gray-900">Complemento *</label>
+                <label htmlFor="complement" className="block text-base font-medium leading-6 text-gray-900">Complemento</label>
                 <input
                   type="text"
                   name="complement"
