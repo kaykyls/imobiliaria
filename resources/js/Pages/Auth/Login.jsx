@@ -87,9 +87,13 @@ export default function Login({ status, canResetPassword }) {
                         </Link>
                     )}
 
-                    <PrimaryButton className="ml-4" disabled={processing}>
+                    <button
+                        disabled={processing}
+                        type="submit"
+                        className="ml-4 rounded-md bg-main-color px-3 py-2 text-base font-semibold text-white shadow-sm hover:bg-main-color-dark transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-main-color"
+                    >
                         Login
-                    </PrimaryButton>
+                    </button>
                 </div>
             </form>
         </GuestLayout>
