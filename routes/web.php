@@ -22,7 +22,7 @@ Route::get('/property', [PropertyController::class, 'index'])->name('property.in
 Route::post('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/property-contact', [ContactController::class, 'propertyContact'])->name('propertyContact');
 
-Route::middleware(['auth'])->group(function () {
+// Route::middleware(['auth'])->group(function () {
     Route::get('/manage', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/manage/admins', [AdminController::class, 'index'])->name('admins');
     Route::get('manage/admins/register', [RegisteredUserController::class, 'create']);
@@ -37,7 +37,7 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/manage/properties/{property}', [ManagePropertyController::class, 'destroy'])->name('manageProperty.destroy');
     Route::get('/manage/properties/{property}/edit', [ManagePropertyController::class, 'edit'])->name('manageProperty.edit');
     Route::put('/manage/properties/{property}', [ManagePropertyController::class, 'update'])->name('manageProperty.update');
-});
+// });
 
 Route::middleware('auth')->group(function () {
     Route::get('/manage/admins/{admin}/edit', [ProfileController::class, 'edit'])->name('profile.edit');
