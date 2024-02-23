@@ -23,7 +23,7 @@ Route::post('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/property-contact', [ContactController::class, 'propertyContact'])->name('propertyContact');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/manage', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/manage', [DashboardController::class, 'index'])->name('dashboard')->secure();
     Route::get('/manage/admins', [AdminController::class, 'index'])->name('admins');
     Route::get('manage/admins/register', [RegisteredUserController::class, 'create']);
     Route::post('register', [RegisteredUserController::class, 'store'])->name('register.store');
