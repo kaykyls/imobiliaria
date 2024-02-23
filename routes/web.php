@@ -31,7 +31,7 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/manage/admins/{admin}', [AdminController::class, 'destroy'])->name('admins.destroy');
 
     Route::get('/manage/properties/register', [ManagePropertyController::class, 'register'])->name('manageProperty.register');
-    Route::post('/manage/properties', [ManagePropertyController::class, 'store'])->name('manageProperty.store');
+    Route::post('/manage/properties', [ManagePropertyController::class, 'store'])->name('manageProperty.store')->secure();
     Route::get('/manage/properties', [ManagePropertyController::class, 'indexAdmin'])->name('manageProperty.index');
     Route::get('/manage/properties/{property}', [ManagePropertyController::class, 'showAdmin'])->name('manageProperty.showAdmin');
     Route::delete('/manage/properties/{property}', [ManagePropertyController::class, 'destroy'])->name('manageProperty.destroy');
