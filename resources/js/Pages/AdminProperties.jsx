@@ -25,13 +25,13 @@ const AdminProperties = (props) => {
               <Link className='py-2 px-14 bg-main-color hover:bg-main-color-dark font-semibold shadow-sm text-white transition rounded-md' href="/manage/properties/register">Cadastrar</Link>
             </div>
             <input
-              className='mt-8 w-full rounded-md border-gray-200 border'
+              className='mt-8 w-full rounded-md border-0 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-main-color'
               id='search'
               name='search'
               value={searchQuery}
               onChange={handleSearchInputChange}
               type="text"
-              placeholder='Pesquisar'
+              placeholder='Pesquisar...'
             />
           </form>
 

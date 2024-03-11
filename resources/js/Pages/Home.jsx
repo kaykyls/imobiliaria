@@ -8,8 +8,6 @@ import About from '@/Components/About';
 import Testimonials from '@/Components/Testimonials';
 
 export default function Home({properties, properties_pagination}) {
-    console.log(properties_pagination);
-
     return (
         <Layout>
             <Banner/>
