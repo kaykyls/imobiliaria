@@ -35,7 +35,7 @@ const Header = () => {
                         Lyks Imóveis
                     </Link>
                     <form className='hidden md:block' onSubmit={handleSubmit}>
-                        <input id="search" name="search" placeholder="Pesquisar..." className="w-[300px] lg:w-[700px] h-8 rounded-md border-gray-300" type="text" />
+                        <input id="search" name="search" placeholder="Pesquisar..." className="w-[300px] lg:w-[700px] h-8 rounded-md border-0 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-main-color" type="text" />
                     </form>
                     <div className="hidden md:flex">
                         <div className='flex items-end gap-4'>
@@ -77,7 +77,7 @@ const Header = () => {
                         }
                     </ul>
                     <form className='block md:hidden' onSubmit={handleSubmit}>
-                        <input id='search-mobile' name='search-mobile' placeholder="Pesquisar..." className="w-full h-8 rounded-md border-gray-300" type="text" />
+                        <input id='search-mobile' name='search-mobile' placeholder="Pesquisar..." className="w-full h-8 rounded-md border-0 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-main-color" type="text" />
                     </form>
                 </nav>
             </div>     

@@ -51,18 +51,18 @@ const Contact = () => {
                     <h3 className="text-2xl mb-5">Entre em contato</h3>
                     <form id='contact-form' onSubmit={handleSubmit} className="flex flex-col md:w-[400px] ">
                         <label htmlFor='name'>Nome:</label>
-                        <input autoComplete='on' placeholder='Digite seu nome' name='name' id='name' value={data.name} onChange={(e) => handleChange(e)} className="border-gray-300 mb-4" type="text" required/>
+                        <input autoComplete='on' placeholder='Digite seu nome' name='name' id='name' value={data.name} onChange={(e) => handleChange(e)} className="border-0 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-main-color mb-4" type="text" required/>
                         <label htmlFor='email'>Email:</label>
-                        <input autoComplete='on' placeholder='Digite seu email' name='email' id='email' value={data.email} onChange={(e) => handleChange(e)} className="border-gray-300 mb-4" type="email" required/>
+                        <input autoComplete='on' placeholder='Digite seu email' name='email' id='email' value={data.email} onChange={(e) => handleChange(e)} className="border-0 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-main-color mb-4" type="email" required/>
                         <label htmlFor='phone'>Telefone:</label>
-                        <input autoComplete='on' placeholder='Digite seu telefone' name='phone' id='phone' value={data.phone} onChange={(e) => handlePhoneChange(e)} className="border-gray-300 mb-4" type="tel" maxLength="15" required/>
+                        <input autoComplete='on' placeholder='Digite seu telefone' name='phone' id='phone' value={data.phone} onChange={(e) => handlePhoneChange(e)} className="border-0 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-main-color mb-4" type="tel" maxLength="15" required/>
                         <label htmlFor='userMessage'>Mensagem</label>
                         <textarea 
                             id='userMessage'
                             name='userMessage'
                             value={data.userMessage}
                             onChange={(e) => handleChange(e)}
-                            className="border-gray-300 mb-4" 
+                            className="border-0 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-main-color mb-4" 
                             placeholder="Digite uma mensagem"
                             required
                             >

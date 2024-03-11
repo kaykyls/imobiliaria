@@ -5,14 +5,14 @@ const Card = ({img, title, value, rooms, bathrooms, href, isForRent}) => {
   const formattedPrice = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
 
   return (
-    <Link href={href} className="w-[100%] relative border border-gray-300 cursor-pointer rounded-xl overflow-hidden">
+    <Link href={href} className="w-[100%] group relative border border-gray-300 cursor-pointer rounded-xl overflow-hidden">
         <span className="absolute top-4 left-4 px-6 py-1 bg-main-color font-semibold text-white z-40 text-sm rounded-lg">{isForRent ? "Aluguel" : "Venda"}</span>
-        <div className="relative group overflow-hidden">
-        <img
-          className="h-[250px] object-cover w-full group-hover:scale-110 transition"
-          src={img}
-          alt={title}
-        />
+        <div className="relative overflow-hidden">
+          <img
+            className="h-[250px] object-cover w-full group-hover:scale-110 transition"
+            src={img}
+            alt={title}
+          />
         <div className="absolute inset-0 w-full h-full bg-gradient-to-t from-transparent to-black opacity-[0.7]"></div>
       </div>
         <div className="flex flex-col px-4 py-6">
