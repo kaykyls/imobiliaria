@@ -68,7 +68,7 @@ const Contact = () => {
                             >
                         </textarea>
 
-                        <input className="border-gray-300 bg-main-color hover:bg-main-color-dark shadow-sm font-semibold text-white transition color-white py-2 duration-500 cursor-pointer" type="submit" value="Enviar"/>
+                        <input className="border-gray-300 bg-main-color hover:bg-main-color-dark shadow-sm font-semibold text-white transition color-white py-2 cursor-pointer" type="submit" value="Enviar"/>
                     </form>
                 </div>
                 <div>
