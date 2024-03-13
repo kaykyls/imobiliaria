@@ -196,7 +196,7 @@ const EditProperty = ({property, auth}) => {
                 strokeLinejoin="round"
               />
             </svg>
-            <h1 className="text-2xl">Editar Imóvel</h1>
+            <h1 className="text-xl">Editar Imóvel</h1>
           </div>
           <form onSubmit={handleSubmit}>
         <div className="space-y-12">

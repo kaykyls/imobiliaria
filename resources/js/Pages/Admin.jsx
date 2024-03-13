@@ -13,7 +13,7 @@ export default function Admin({admin, auth}){
               <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
             </svg>
           </Link>
-          <span className='text-2xl'>Admin</span>
+          <span className='text-xl'>Admin</span>
         </div>
       <Link href={`/manage/admins/${id}/edit`} className='bg-main-color hover:bg-main-color-dark transition font-semibold text-white shadow-sm py-2 px-14 rounded-md cursor-pointer'>
         Editar

@@ -14,7 +14,7 @@ const AdminProperty = ({property, auth}) => {
               <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
             </svg>
           </Link>
-          <span className='text-2xl'>Imóvel</span>
+          <span className='text-xl'>Imóvel</span>
         </div>
       <Link href={`/manage/properties/${id}/edit`} className='bg-main-color hover:bg-main-color-dark shadow-sm font-semibold text-white transition py-2 px-14 rounded-md cursor-pointer'>
         Editar

@@ -22,7 +22,7 @@ const Admins = ({admins, auth}) => {
       <div>
           <form onSubmit={(e) => e.preventDefault()}>
             <div className='justify-between flex '>
-              <h2 className='text-2xl'>Admins</h2>
+              <h2 className='text-xl'>Admins</h2>
               <Link className='py-2 px-14 bg-main-color hover:bg-main-color-dark font-semibold text-white shadow-sm transition rounded-md' href="/manage/admins/register">Cadastrar</Link>
             </div>
             <input

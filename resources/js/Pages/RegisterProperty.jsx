@@ -163,7 +163,7 @@ const RegisterProperty = ({auth}) => {
           </svg>
         </Link>
             
-        <h1 className="text-2xl">Cadastrar Imóvel</h1>
+        <h1 className="text-xl">Cadastrar Imóvel</h1>
       </div>
       <form onSubmit={handleSubmit}>
         <div className="space-y-12">

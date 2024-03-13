@@ -85,7 +85,7 @@ export default function Register({auth}) {
                         />
                     </svg>
                 </Link>
-                <h1 className="text-2xl">Cadastrar Admin</h1>
+                <h1 className="text-xl">Cadastrar Admin</h1>
             </div>
 
             <form onSubmit={submit}>

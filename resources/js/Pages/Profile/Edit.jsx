@@ -34,7 +34,7 @@ export default function Edit({ user }) {
                 strokeLinejoin="round"
               />
             </svg>
-            <h1 className="text-2xl">Editar Admin</h1>
+            <h1 className="text-xl">Editar Admin</h1>
           </div>
 
             <div>
