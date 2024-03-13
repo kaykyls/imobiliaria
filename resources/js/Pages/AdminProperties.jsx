@@ -5,6 +5,8 @@ import { Link } from '@inertiajs/react'
 const AdminProperties = (props) => {
   const [searchQuery, setSearchQuery] = useState('');
 
+  const auth = props.auth;
+
   const handleSearchInputChange = (event) => {
     setSearchQuery(event.target.value);
   };
@@ -17,7 +19,7 @@ const AdminProperties = (props) => {
   });
 
   return (
-    <PanelLayout>
+    <PanelLayout user={auth.user}>
       <>
           <form onSubmit={(e) => e.preventDefault()}>
             <div className='justify-between flex '>

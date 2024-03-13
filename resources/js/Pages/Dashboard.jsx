@@ -2,7 +2,7 @@ import PanelLayout from "@/Layouts/PanelLayout";
 import { useEffect, useState } from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 
-export default function Dashboard({active, inactive, forSale, forRent, data}) {      
+export default function Dashboard({active, inactive, forSale, forRent, data, auth}) {   
       const COLORS = ['#5BC0BE', '#2F8584'];
       
       const RADIAN = Math.PI / 180;
@@ -44,7 +44,7 @@ export default function Dashboard({active, inactive, forSale, forRent, data}) {
    
 
     return (
-        <PanelLayout>
+        <PanelLayout user={auth.user}>
             <div className='mb-8'>
                 <span className='text-2xl'>Dashboard</span>
             </div>

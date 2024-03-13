@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import PanelLayout from '@/Layouts/PanelLayout'
 import { Link } from '@inertiajs/react'
 
-const Admins = ({admins}) => {
+const Admins = ({admins, auth}) => {
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleSearchInputChange = (event) => {
@@ -18,7 +18,7 @@ const Admins = ({admins}) => {
   });
 
   return (
-    <PanelLayout>
+    <PanelLayout user={auth.user}>
       <div>
           <form onSubmit={(e) => e.preventDefault()}>
             <div className='justify-between flex '>

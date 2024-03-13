@@ -26,7 +26,7 @@ module.exports = {
                 'main-color': '#5BC0BE',
                 'main-color-dark': '#2F8584',
                 'text-color': '1E1E1E',
-                "light-gray": "#F2F2F6"
+                "light-gray": "#F5F7FA"
             },
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
