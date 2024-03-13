@@ -2,7 +2,7 @@ import { useState } from 'react'
 import PanelLayout from '@/Layouts/PanelLayout'
 import { router, useForm, Link } from '@inertiajs/react'
 
-const EditProperty = ({property}) => {
+const EditProperty = ({property, auth}) => {
     let {title, address, price, id, description, category, isForRent, status, bedrooms, bathrooms, images} = property
 
     category = category === 0 ? 'Apartamento' : 'Casa'
@@ -170,7 +170,7 @@ const EditProperty = ({property}) => {
       }
     
       return (
-        <PanelLayout>
+        <PanelLayout user={auth.user}>
           <div className="flex gap-4 items-center mb-8">
             <svg
               onClick={() => history.back()}

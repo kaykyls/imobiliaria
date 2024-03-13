@@ -7,7 +7,7 @@ import PanelLayout from '@/Layouts/PanelLayout';
 
 export default function Edit({ user }) {
     return (
-        <PanelLayout>
+        <PanelLayout user={user}>
             <Head title="Profile" />
             <div className="flex gap-4 items-center mb-8">
             <svg

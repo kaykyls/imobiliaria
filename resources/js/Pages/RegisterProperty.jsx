@@ -2,7 +2,7 @@ import PanelLayout from '@/Layouts/PanelLayout';
 import { useState } from 'react';
 import { useForm, Link } from '@inertiajs/react';
 
-const RegisterProperty = () => {
+const RegisterProperty = ({auth}) => {
   const { data, setData, post, processing } = useForm({
     title: '',
     cep: '',
@@ -135,7 +135,7 @@ const RegisterProperty = () => {
   };
 
   return (
-    <PanelLayout>
+    <PanelLayout user={auth.user}>
       <div className="flex gap-4 items-center mb-10">
         <Link href="/manage/properties">
           <svg

@@ -4,7 +4,7 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import { Head, Link } from '@inertiajs/react';
 import PanelLayout from '@/Layouts/PanelLayout';
 
-export default function Register() {
+export default function Register({auth}) {
     const { data, setData, post, processing, reset } = useForm({
         name: '',
         email: '',
@@ -57,7 +57,7 @@ export default function Register() {
     };
 
     return (
-        <PanelLayout>
+        <PanelLayout user={auth.user}>
             <Head title="Register" />
             <div className="flex gap-4 items-center mb-10">
                 <Link href="/manage/admins">

@@ -2,11 +2,11 @@ import React from 'react'
 import PanelLayout from '@/Layouts/PanelLayout'
 import { Link } from '@inertiajs/react'
 
-const AdminProperty = ({property}) => {
+const AdminProperty = ({property, auth}) => {
   const {title, address, price, id, description, category, isForRent, status, bedrooms, bathrooms, images} = property
   
   return (
-    <PanelLayout>
+    <PanelLayout user={auth.user}>
       <div className='flex justify-between mb-8'>
         <div className="flex items-center gap-8">
           <Link href='/manage/properties'>

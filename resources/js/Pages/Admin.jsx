@@ -1,11 +1,11 @@
 import PanelLayout from "@/Layouts/PanelLayout"
 import { Link } from "@inertiajs/react"
 
-export default function Admin({admin}){
+export default function Admin({admin, auth}){
   const {id, name, email} = admin
 
   return(
-      <PanelLayout>
+      <PanelLayout user={auth.user}>
         <div className='flex justify-between mb-8'>
         <div className="flex items-center gap-8">
           <Link href='/manage/admins'>
