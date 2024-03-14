@@ -77,7 +77,10 @@ export default function Dashboard({active, inactive, forSale, forRent, data, aut
             window.removeEventListener('resize', handleResize);
         };
     }, []);
-   
+
+    const TickFormatter = (value) => {
+        return "R$" + value 
+    }
 
     return (
         <PanelLayout user={auth.user}>
@@ -138,8 +141,8 @@ export default function Dashboard({active, inactive, forSale, forRent, data, aut
                     </div>
                 </div>
             </div>
-            <div className="flex gap-4 mt-4">
-                 <div className="h-[300px] md:h-[550px] w-8/12 bg-white rounded-lg flex p-4">
+            <div className="flex flex-col md:flex-row gap-4 mt-4">
+                 <div className="h-[300px] md:h-[550px] w-full md:w-8/12 bg-white rounded-lg flex p-4">
                     <ResponsiveContainer width="100%" height="100%">
                         <LineChart
                         width={500}
@@ -153,7 +156,7 @@ export default function Dashboard({active, inactive, forSale, forRent, data, aut
                         }}
                         >
                         <XAxis tickMargin={10} axisLine={false} tickLine={false} dataKey="mês" />
-                        <YAxis tickMargin={20} axisLine={false} tickLine={false}/>
+                        <YAxis tickMargin={5} axisLine={false} tickLine={false} tickFormatter={TickFormatter}/>
                         <Tooltip />
                         <Legend verticalAlign="top" />
                         <Line type="monotone" dataKey="Gastos" stroke="#f87171" activeDot={{ r: 8 }} />
@@ -161,7 +164,7 @@ export default function Dashboard({active, inactive, forSale, forRent, data, aut
                         </LineChart>
                     </ResponsiveContainer>
                 </div>
-                <div className="h-[300px] md:h-[550px] w-4/12 bg-white rounded-lg p-4">
+                <div className="h-[300px] md:h-[550px] w-full md:w-4/12 bg-white rounded-lg p-4">
                     <ResponsiveContainer   ResponsiveContainer width="100%" height="100%">
                         <PieChart width={400} height={400}>
                             <Pie
@@ -183,8 +186,6 @@ export default function Dashboard({active, inactive, forSale, forRent, data, aut
                         </PieChart>
                     </ResponsiveContainer>
                 </div>
-           
-
             </div>
         </PanelLayout>
     );
