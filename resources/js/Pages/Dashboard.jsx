@@ -164,7 +164,7 @@ export default function Dashboard({active, inactive, forSale, forRent, data, aut
                         </LineChart>
                     </ResponsiveContainer>
                 </div>
-                <div className="h-[300px] md:h-[550px] w-full md:w-4/12 bg-white rounded-lg p-4">
+                {/* <div className="h-[300px] md:h-[550px] w-full md:w-4/12 bg-white rounded-lg p-4">
                     <ResponsiveContainer   ResponsiveContainer width="100%" height="100%">
                         <PieChart width={400} height={400}>
                             <Pie
@@ -185,14 +185,58 @@ export default function Dashboard({active, inactive, forSale, forRent, data, aut
 
                         </PieChart>
                     </ResponsiveContainer>
+                </div> */}
+                <div className="h-[300px] md:h-[550px] w-full md:w-4/12 bg-white rounded-lg p-4">
+                    <h3 className="mb-10 text-slate-400">Últimas Vendas</h3>
+                    <div className="space-y-6">
+                        <div className="flex justify-between">
+                            <div className="flex gap-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                </svg>
+                                <div className="flex flex-col">
+                                    <span>João da Silva</span>
+                                    <span className="text-sm text-slate-400">joao@email.com</span>
+                                </div>
+                            </div>
+                            <div>
+                                <span className="text-sm">R$200.000</span>
+                            </div>
+                        </div>
+                        <div className="flex justify-between">
+                            <div className="flex gap-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                </svg>
+                                <div className="flex flex-col">
+                                    <span>João da Silva</span>
+                                    <span className="text-sm text-slate-400">joao@email.com</span>
+                                </div>
+                            </div>
+                            <div>
+                                <span className="text-sm">R$200.000</span>
+                            </div>
+                        </div>
+                        <div className="flex justify-between">
+                            <div className="flex gap-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                </svg>
+                                <div className="flex flex-col">
+                                    <span>João da Silva</span>
+                                    <span className="text-sm text-slate-400">joao@email.com</span>
+                                </div>
+                            </div>
+                            <div>
+                                <span className="text-sm">R$200.000</span>
+                            </div>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
-        </PanelLayout>
-    );
-}
-
-
-{/* <ResponsiveContainer width="100%" height="100%">
+            <div className="h-[500px] w-full bg-white rounded-lg p-4 mt-4">
+                <ResponsiveContainer width="100%" height="100%">
                         <BarChart
                         width={500}
                         height={300}
@@ -204,11 +248,15 @@ export default function Dashboard({active, inactive, forSale, forRent, data, aut
                             bottom: 5,
                         }}
                         >
-                        <XAxis dataKey="name" />
+                        <XAxis dataKey="Mês" />
                         <YAxis />
                         <Tooltip />
                         <Legend />
-                        <Bar dataKey="pv" fill="#8884d8" activeBar={<Rectangle fill="pink" stroke="blue" />} />
-                        <Bar dataKey="uv" fill="#82ca9d" activeBar={<Rectangle fill="gold" stroke="purple" />} />
+                        <Bar dataKey="Vendas" fill="#fecaca" activeBar={<Rectangle fill="pink" stroke="blue" />} />
+                        <Bar dataKey="Gastos" fill="#bbf7d0" activeBar={<Rectangle fill="gold" stroke="purple" />} />
                         </BarChart>
-                    </ResponsiveContainer> */}
+                    </ResponsiveContainer>
+            </div>
+        </PanelLayout>
+    );
+}
