@@ -56,7 +56,7 @@ const Contact = () => {
                         </svg>
                         <div className='flex flex-col text-gray-600'>
                             <span>Rua das Casas Encantadas, 123</span>
-                            <span>Bairro dos Sonhos</span>
+                            <span>Bairro dos Sonhos, Feira de Santana - BA</span>
                         </div>
                     </div>
                     <div className='flex gap-4 items-center mt-6'>
@@ -71,19 +71,8 @@ const Contact = () => {
                         </svg>
                         <span className='text-gray-600'>atendimento@Lyksimoveis.com.br</span>
                     </div>
-                    
-                    {/* <div className="flex flex-col gap-2">
-                        <p className="font-semibold">Lyks Imóveis</p>
-                        
-                        <p></p>
-                        <p>São Paulo, SP</p>
-                        
-                    </div> */}
-                    
-                    
                 </div>
                 <div>
-                    {/* <h3 className="text-2xl mb-5">Endereço</h3> */}
                     <form id='contact-form' onSubmit={handleSubmit} className="flex flex-col md:w-[400px] ">
                         <label className='mb-3 font-medium' htmlFor='name'>Nome:</label>
                         <input autoComplete='on' placeholder='Digite seu nome' name='name' id='name' value={data.name} onChange={(e) => handleChange(e)} className="rounded-md border-0 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-main-color mb-4" type="text" required/>
