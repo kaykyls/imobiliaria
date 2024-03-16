@@ -28,7 +28,7 @@ const Header = () => {
     };
 
     return (
-        <header className='top-0 left-0 bg-white w-full z-50 shadow-lg'>
+        <header className='top-0 left-0 bg-white w-full z-50 border border-gray-300'>
             <div className="border-b border-gray-300 py-6">
                 <div className="container mx-auto flex justify-between items-end">
                     <Link href="/">
@@ -65,7 +65,7 @@ const Header = () => {
             <div>
                 <nav className="container mx-auto py-6">
                 <ul ref={menuRef} className={`${showMenu ? "flex flex-col absolute top-0 right-0 shadow-2xl bg-white h-screen w-[300px] items-center justify-center -translate-x-0" : "md:flex sr-only md:not-sr-only absolute md:static -translate-x-[-100%] md:-translate-x-0"} transition-transform duration-300 md:duration-0 ease-in-out gap-4 z-50`}>
-                        <li><Link className="hover:text-main-color" href="/">Home</Link></li>
+                        <li><Link className="hover:text-main-color" href="/">Início</Link></li>
                         <li><Link className="hover:text-main-color" href="/#properties">Imóveis</Link></li>
                         <li><Link className="hover:text-main-color" href="/#about">Sobre</Link></li>
                         <li><Link className="hover:text-main-color" href="/#contact">Contato</Link></li>

@@ -5,7 +5,7 @@ const Card = ({img, title, value, rooms, bathrooms, href, isForRent}) => {
   const formattedPrice = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
 
   return (
-    <Link href={href} className="w-[100%] group relative border border-gray-300 cursor-pointer rounded-xl overflow-hidden">
+    <Link href={href} className="w-[100%] group relative border shadow-lg cursor-pointer rounded-xl overflow-hidden">
         <span className="absolute top-4 left-4 px-6 py-1 bg-main-color font-semibold text-white z-40 text-sm rounded-lg">{isForRent ? "Aluguel" : "Venda"}</span>
         <div className="relative overflow-hidden">
           <img
@@ -18,8 +18,8 @@ const Card = ({img, title, value, rooms, bathrooms, href, isForRent}) => {
         <div className="flex flex-col px-4 py-6">
             <h3 className="text-xl font-medium text-ellipsis overflow-hidden">{title}</h3>
             <p className="text-base ">{formattedPrice}</p>
-            <div className='my-4 bg-gray-300 h-[1px] w-full'></div>
-            <div className="flex gap-2 flex-wrap">
+            {/* <div className='my-4 bg-gray-300 h-[1px] w-full'></div> */}
+            <div className="flex gap-2 flex-wrap mt-8">
                 <div className="flex gap-2 items-center border rounded-full px-4 py-1">
                   <svg width="17" height="14" viewBox="0 0 17 14" fill="none" xmlns="https://www.w3.org/2000/svg">
                     <path d="M15 7.138V1C15 0.801088 14.921 0.610322 14.7803 0.46967C14.6397 0.329018 14.4489 0.25 14.25 0.25C14.0511 0.25 13.8603 0.329018 13.7197 0.46967C13.579 0.610322 13.5 0.801088 13.5 1V1.75H3V1C3 0.801088 2.92098 0.610322 2.78033 0.46967C2.63968 0.329018 2.44891 0.25 2.25 0.25C2.05109 0.25 1.86032 0.329018 1.71967 0.46967C1.57902 0.610322 1.5 0.801088 1.5 1V7.138C1.06282 7.29256 0.684069 7.57842 0.415566 7.95648C0.147063 8.33453 0.00192223 8.7863 0 9.25V13C0 13.1989 0.0790176 13.3897 0.21967 13.5303C0.360322 13.671 0.551088 13.75 0.75 13.75C0.948912 13.75 1.13968 13.671 1.28033 13.5303C1.42098 13.3897 1.5 13.1989 1.5 13V12.25H15V13C15 13.1989 15.079 13.3897 15.2197 13.5303C15.3603 13.671 15.5511 13.75 15.75 13.75C15.9489 13.75 16.1397 13.671 16.2803 13.5303C16.421 13.3897 16.5 13.1989 16.5 13V9.25C16.4981 8.7863 16.3529 8.33453 16.0844 7.95648C15.8159 7.57842 15.4372 7.29256 15 7.138ZM13.5 7H12.75V5.5C12.75 5.30109 12.671 5.11032 12.5303 4.96967C12.3897 4.82902 12.1989 4.75 12 4.75H4.5C4.30109 4.75 4.11032 4.82902 3.96967 4.96967C3.82902 5.11032 3.75 5.30109 3.75 5.5V7H3V3.25H13.5V7ZM5.25 7V6.25H7.5V7H5.25ZM9 6.25H11.25V7H9V6.25ZM1.5 9.25C1.5 9.05109 1.57902 8.86032 1.71967 8.71967C1.86032 8.57902 2.05109 8.5 2.25 8.5H14.25C14.4489 8.5 14.6397 8.57902 14.7803 8.71967C14.921 8.86032 15 9.05109 15 9.25V10.75H1.5V9.25Z" fill="black"/>
