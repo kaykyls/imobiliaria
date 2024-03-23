@@ -25,15 +25,20 @@ const Admins = ({admins, auth}) => {
               <h2 className='text-xl'>Admins</h2>
               <Link className='py-2 px-14 bg-main-color hover:bg-main-color-dark font-semibold text-white shadow-sm transition rounded-md' href="/manage/admins/register">Cadastrar</Link>
             </div>
-            <input
-              className='mt-8 w-full rounded-md border-0 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-main-color'
-              id='search'
-              name='search'
-              type="text"
-              placeholder='Pesquisar...'
-              value={searchQuery}
-              onChange={handleSearchInputChange}
-            />
+            <div className='relative mt-8'>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 absolute h-full left-3 pointer-events-none text-gray-400">
+                <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+              </svg>
+              <input
+                className='pl-12 py-3 w-full rounded-md border-0 ring-1 ring-inset ring-gray-200 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-main-color'
+                id='search'
+                name='search'
+                type="text"
+                placeholder='Pesquisar...'
+                value={searchQuery}
+                onChange={handleSearchInputChange}
+              />
+            </div>
           </form>
 
           <table className='mt-10 w-full'>
